@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Arno BRUCHOT (BTS SIO SISR)</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<style>
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#c3cfe2);color:#333;line-height:1.6}
+a{text-decoration:none;color:inherit}
+h1,h2,h3{font-weight:700;text-align:center;color:#3f3d56}
+h1{font-size:2.5rem;margin-bottom:15px}
+h2{font-size:2rem;margin:40px 0 20px}
+p{text-align:center;margin-bottom:15px;font-size:1.1rem}
+
+/* ===== HEADER ===== */
+header{background:#3f3d56;color:#fff;padding:20px;text-align:center;position:sticky;top:0;z-index:1000}
+header nav a{margin:0 15px;font-weight:600;color:#fff;transition:.3s}
+header nav a:hover{color:#ffd369}
+
+/* ===== SECTIONS ===== */
+section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-radius:15px;box-shadow:0 6px 18px rgba(0,0,0,.1)}
+   .certifications-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:20px}
+    .certif-card{background:#f0f0fa;padding:20px;border-radius:12px;text-align:center;box-shadow:0 6px 12px rgba(0,0,0,.1)}
+    .certif-card img{max-width:150px;margin-top:10px}
+
+    /* ===== COMPETENCES ===== */
+    .bulles{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:20px}
+    .bulle{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f9f9f9;width:120px;height:120px;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,.1);transition:.3s;font-weight:600}
+    .bulle i{font-size:2rem;margin-bottom:10px;color:#3f3d56}
+    .bulle:hover{transform:scale(1.1);background:#ffd369}
+/* ===== BTN ===== */
+.btn{display:inline-block;padding:12px 25px;margin:10px;background:#3f3d56;color:#fff;border-radius:8px;transition:.3s}
+.btn:hover{background:#5a58a3}
+
+/* ===== TIMELINE ===== */
+.timeline{position:relative;margin:40px 0;padding-left:20px}
+.timeline::before{content:"";position:absolute;left:20px;top:0;width:4px;height:100%;background:#3f3d56;border-radius:2px}
+.timeline-item{position:relative;margin-bottom:30px;padding-left:50px}
+.timeline-dot{position:absolute;left:12px;top:5px;width:16px;height:16px;background:#ffd369;border:3px solid #3f3d56;border-radius:50%}
+.timeline-content{background:#f9f9f9;padding:15px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+
+/* ===== COMPETENCES ===== */
+.competence-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;margin-top:30px}
+.competence-card{background:#f0f0fa;padding:20px;border-radius:12px;text-align:center;font-weight:600;cursor:pointer;transition:.3s}
+.competence-card:hover{transform:translateY(-5px);box-shadow:0 6px 15px rgba(0,0,0,.15)}
+/* ===== FORMULAIRE DE CONTACT ===== */
+.contact-form {
+  max-width: 600px;
+  margin: 30px auto;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.contact-form .form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.contact-form label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+  color: #3f3d56;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #3f3d56;
+  outline: none;
+  box-shadow: 0 0 5px rgba(63,61,86,0.3);
+}
+
+.contact-form button {
+  background: #3f3d56;
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #5a58a3;
+}
+
+/* ===== MODALE ===== */
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);justify-content:center;align-items:center;z-index:2000}
+.modal-content{background:#fff;padding:30px;border-radius:12px;max-width:600px;width:90%;text-align:center;animation:fadeIn .4s ease}
+.modal-content h3{margin-bottom:15px;color:#3f3d56}
+.modal-content ul{text-align:left;margin-top:15px}
+.modal-close{position:absolute;top:15px;right:20px;font-size:22px;cursor:pointer;color:#333}
+@keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+
+/* ===== CONTACT ===== */
+.social{display:flex;justify-content:center;gap:20px;margin-top:20px}
+.social a{font-size:1.5rem;color:#3f3d56;transition:.3s}
+.social a:hover{color:#ffd369}
+
+/* ===== FOOTER ===== */
+footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:40px}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00bfae;margin-bottom:8px;">
+    ARNO Bruchot
+  </div>
+  <h1>Portfolio - Arno BRUCHOT</h1>
+  <nav>
+    <a href="#intro">Accueil</a>
+  <a href="#parcours">Parcours</a>
+   <a href="#certifications">Certifications</a>
+    <a href="#competences">Compétences</a>
+  
+    <a href="#stage">Stage</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <!-- INTRO -->
+  <section id="intro">
+    <h2>👨‍💻 Bienvenue</h2>
+    <p>Je suis étudiant en BTS SIO option SISR. Découvrez mon parcours, mes compétences et mes projets.</p>
+    <a href="pdf/cv.pdf" target="_blank" class="btn">📄 Voir mon CV</a>
+  </section>
+
+  <!-- ABOUT -->
+
+
+  <!-- PARCOURS -->
+  <section id="parcours">
+    <h2>Mon parcours scolaire</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>BTS SIO Option SISR</h3>
+          <p>2024 - En cours | Lycée Merleau Ponty</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Bac Général</h3>
+          <p>2023 - 2024 | Lycée les Iris</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Brevet des collèges</h3>
+          <p>2020 - 2021 | Collège Max Linder</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="certifications">
+    <h2>🏅 Mes certifications</h2>
+    <div class="certifications-container">
+      <div class="certif-card">
+        <h3>Introduction à la cybersécurité</h3>
+        <p>Notions fondamentales et bonnes pratiques de protection.</p>
+        <img src="images/cyber.png" alt="Introduction à la cybersécurité">
+      </div>
+      <div class="certif-card">
+        <h3>Introduction to Modern AI</h3>
+        <p>Principes de l’intelligence artificielle moderne.</p>
+        <img src="images/IA.png" alt="Introduction to Modern AI">
+      </div>
+      <div class="certif-card">
+        <h3>Numérique Responsable</h3>
+        <p>Comprendre l’impact environnemental du numérique.</p>
+        <img src="images/numerique.png" alt="Numérique Responsable">
+      </div>
+    </div></section>
+<section id="competences">
+    <h2>👨‍💻 Mes compétences développement</h2>
+    <div class="bulles">
+      <div class="bulle"><i class="fab fa-html5"></i><span>HTML5</span></div>
+      <div class="bulle"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+      <div class="bulle"><i class="fab fa-linux"></i><span>Linux</span></div>
+      <div class="bulle"><i class="fas fa-database"></i><span>SQL</span></div>
+      <div class="bulle"><i class="fab fa-python"></i><span>Python</span></div>
+    </div>
+
+    <h2>⚙️ Mes outils / logiciels</h2>
+    <div class="bulles">
+      <div class="bulle"><i class="devicon-mysql-plain colored"></i><span>MySQL</span></div>
+      <div class="bulle"><i class="devicon-photoshop-plain colored"></i><span>Photoshop</span></div>
+      <div class="bulle"><i class="devicon-vscode-plain colored"></i><span>VS Code</span></div>
+      <div class="bulle"><i class="fab fa-github"></i><span>GitHub</span></div>
+    </div>
+  </section>
+  <!-- STAGE -->
+  <section id="stage">
+    <h2>💼 Mon stage de première année</h2>
+    <p>Mon stage de 1ère année s'est déroulé chez <strong>DépanOrdi</strong> à Bordeaux, du 19 mai au 27 juin 2024.</p>
+    <p>J'ai eu l'opportunité de travailler sur divers projets ce qui a renforcé mes compétences en informatique et en réseaux.</p>
+    <h3>🏢 Présentation de DépanOrdi Bordeaux</h3>
+    <p><strong>DépanOrdi</strong> est une société de services informatiques basée à Bordeaux depuis plus de 10 ans. Elle est spécialisée dans :</p>
+    <ul style="margin-top:15px;text-align:left;max-width:800px;margin:auto">
+      <li>Maintenance et dépannage pour particuliers et TPE/PME.</li>
+      <li>Vente et installation de matériel (PC, serveurs, NAS, réseaux).</li>
+      <li>Audit, infogérance et protection des données (sauvegardes, récupération).</li>
+      <li>Intégration de serveurs/NAS et réseaux (RAID, virtualisation, câblage).</li>
+    </ul>
+    <h3 style="margin-top:30px">🕒 Mes horaires :</h3>
+    <p>Du lundi au vendredi de <strong>9h à 17h</strong>.</p>
+  </section>
+
+  <!-- COMPETENCES -->
+  <section id="competences-missions">
+    <h2>💡 Compétences mobilisées</h2>
+    <div class="competence-grid" style="grid-template-columns:repeat(3,1fr)">
+      <div class="competence-card" data-modal="m1">Gérer le patrimoine informatique</div>
+      <div class="competence-card" data-modal="m2">Répondre aux incidents et aux demandes</div>
+      <div class="competence-card" data-modal="m3">Développer la présence en ligne</div>
+      <div class="competence-card" data-modal="m4">Travailler en mode projet</div>
+      <div class="competence-card" data-modal="m5">Mettre à disposition des services</div>
+      <div class="competence-card" data-modal="m6">Organiser son développement pro</div>
+    </div>
+  </section>
+
+  <!-- MODALES COMPETENCES + MISSIONS -->
+  <div id="m1" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>Gérer le patrimoine informatique</h3>
+      <p>Inventaire, suivi et maintenance des équipements.</p>
+      <h4>💼 Missions associées :</h4>
+      <ul>
+        <li>Création d’un NAS sécurisé avec Docker, RAID, Nextcloud, Jellyfin, et gestion centralisée (serveur personnel client). – 05/06/2025</li>
+        <li>Finalisation et remise d’un PC client (mise à jour complète, installation de logiciels, configuration, tests)  – 05/06/2025</li>
+        <li>Installation d’un serveur OpenMediaVault avec RAID BTRFS, configuration d'Hyper Backup – 21/06/2025</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="m2" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>Répondre aux incidents et demandes</h3>
+      <p>Assurer le support utilisateurs et résoudre les problèmes techniques.</p>
+      <h4>💼 Missions associées :</h4>
+      <ul>
+        <li>Mise en service d’un PC neuf : remplacement SSD, installation Windows 11, mises à jour et logiciels professionnels. – 03/06/2025 au 07/06/2025</li>
+        <li>Finalisation et remise d’un PC client (MAJ, logiciels, tests) – 05/06/2025</li>
+        <li>Intervention réseau chez Kiko (redondance fibre, diagnostic) – 06/06/2025</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="m3" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>Développer la présence en ligne</h3>
+      <p>Optimisation de l’image et des services numériques.</p>
+      <h4>💼 Missions associées :</h4>
+      <ul>
+        <li>Création et déploiement d’un portfolio HTML/CSS – 02/06/2025 au 30/06/2025</li>
+        <li>Mise en valeur du profil LinkedIn – 2025</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="m4" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>Travailler en mode projet</h3>
+      <p>Collaboration, planification et gestion de projets IT.</p>
+      <h4>💼 Missions associées :</h4>
+      <ul>
+        <li>Participation à un hackathon (solution technique pour Renault) – 2025</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="m5" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>Mettre à disposition des services</h3>
+      <p>Déploiement et mise en production de services informatiques.</p>
+      <h4>💼 Missions associées :</h4>
+      <ul>
+        <li>Déploiement NAS + Nextcloud sécurisé – 05/06/2025</li>
+        <li>Installation serveur OpenMediaVault (RAID, sauvegardes) – 21/06/2025</li>
+        <li>Finalisation et mise à disposition d’un PC client – 05/06/2025</li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="m6" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <h3>Organiser son développement professionnel</h3>
+      <p>Veille technologique, gestion de l’identité numérique.</p>
+      <h4>💼 Missions associées :</h4>
+      <ul>
+        <li>Mise en place d’une veille technologique continue</li>
+        <li>Optimisation du profil LinkedIn</li>
+        <li>Gestion de l’identité numérique et du portfolio en ligne</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+   <!-- CONTACT -->
+  <section id="contact">
+    <h2>📬 Contact</h2>
+    <p>Vous pouvez me joindre via mes réseaux, par mail ou en utilisant ce formulaire :</p>
+
+    <div class="social">
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="mailto:ton.email@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <form class="contact-form" action="https://formspree.io/f/xdkzpwao" method="POST">
+      <div class="form-group">
+        <label for="name">Nom :</label>
+        <input type="text" id="name" name="name" placeholder="Votre nom" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email :</label>
+        <input type="email" id="email" name="email" placeholder="Votre adresse email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" placeholder="Votre message..." rows="5" required></textarea>
+      </div>
+
+      <button type="submit" class="btn">Envoyer</button>
+    </form>
+  </section>
+
+
+<footer>
+  <p>© 2025 Portfolio BTS SIO - Arno BRUCHOT - Tous droits réservés</p>
+</footer>
+
+<script>
+document.querySelectorAll('.competence-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    document.getElementById(card.dataset.modal).style.display="flex";
+  });
+});
+document.querySelectorAll('.modal-close').forEach(btn=>{
+  btn.addEventListener('click',()=>btn.closest('.modal').style.display="none");
+});
+window.addEventListener('click',e=>{
+  if(e.target.classList.contains('modal')) e.target.style.display="none";
+});
+</script>
+
+</body>
+</html>
