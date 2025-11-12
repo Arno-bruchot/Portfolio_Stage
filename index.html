@@ -116,6 +116,20 @@ section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-ra
 .social a{font-size:1.5rem;color:#3f3d56;transition:.3s}
 .social a:hover{color:#ffd369}
 
+/* ===== CARROUSEL ===== */
+.carousel-container{position:relative;max-width:100%;margin:20px 0;display:flex;align-items:center;justify-content:center}
+.carousel-wrapper{position:relative;width:100%;max-width:500px;overflow:hidden;border-radius:12px}
+.carousel-track{display:flex;transition:transform .5s ease;width:100%}
+.carousel-slide{min-width:100%;display:flex;justify-content:center}
+.carousel-slide img{max-width:100%;height:auto;border-radius:8px}
+.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);background:#3f3d56;color:#fff;border:none;padding:15px 12px;cursor:pointer;font-size:1.5rem;border-radius:4px;transition:.3s;z-index:10}
+.carousel-nav:hover{background:#5a58a3}
+.carousel-nav.prev{left:10px}
+.carousel-nav.next{right:10px}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:#ccc;cursor:pointer;transition:.3s}
+.carousel-dot.active{background:#3f3d56}
+
 /* ===== FOOTER ===== */
 footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:40px}
 </style>
@@ -248,9 +262,29 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
       <p>Inventaire, suivi et maintenance des équipements.</p>
       <h4>💼 Missions associées :</h4>
       <ul>
-        <li>Création d’un NAS sécurisé avec Docker, RAID, Nextcloud, Jellyfin, et gestion centralisée (serveur personnel client). – 05/06/2025</li>
-        <li>Finalisation et remise d’un PC client (mise à jour complète, installation de logiciels, configuration, tests)  – 05/06/2025</li>
-        <li>Installation d’un serveur OpenMediaVault avec RAID BTRFS, configuration d'Hyper Backup – 21/06/2025</li>
+        <li>Création d'un NAS sécurisé avec Docker, RAID, Nextcloud, Jellyfin, et gestion centralisée (serveur personnel client). – 05/06/2025</li>
+      </ul>
+
+      <!-- Carrousel photos NAS -->
+      <div class="carousel-container">
+        <button class="carousel-nav prev" onclick="moveCarousel(-1)">❮</button>
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="carouselTrack">
+            <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0549.jpg" alt="NAS 1"></div>
+            <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0578.jpg" alt="NAS 2"></div>
+            <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0580.jpg" alt="NAS 3"></div>
+            <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0581.jpg" alt="NAS 4"></div>
+            <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0582.jpg" alt="NAS 5"></div>
+            <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0585.jpg" alt="NAS 6"></div>
+          </div>
+        </div>
+        <button class="carousel-nav next" onclick="moveCarousel(1)">❯</button>
+      </div>
+      <div class="carousel-dots" id="carouselDots"></div>
+
+      <ul style="margin-top:20px;">
+        <li>Finalisation et remise d'un PC client (mise à jour complète, installation de logiciels, configuration, tests)  – 05/06/2025</li>
+        <li>Installation d'un serveur OpenMediaVault avec RAID BTRFS, configuration d'Hyper Backup – 21/06/2025</li>
       </ul>
     </div>
   </div>
@@ -361,9 +395,11 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 </footer>
 
 <script>
+// Gestion des modales et compétences
 document.querySelectorAll('.competence-card').forEach(card=>{
   card.addEventListener('click',()=>{
     document.getElementById(card.dataset.modal).style.display="flex";
+    if(card.dataset.modal === "m1") initCarousel();
   });
 });
 document.querySelectorAll('.modal-close').forEach(btn=>{
@@ -372,6 +408,43 @@ document.querySelectorAll('.modal-close').forEach(btn=>{
 window.addEventListener('click',e=>{
   if(e.target.classList.contains('modal')) e.target.style.display="none";
 });
+
+// Gestion du carrousel
+let currentSlide = 0;
+const totalSlides = 6;
+
+function initCarousel() {
+  const dotsContainer = document.getElementById('carouselDots');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+}
+
+function moveCarousel(direction) {
+  currentSlide += direction;
+  if(currentSlide < 0) currentSlide = totalSlides - 1;
+  if(currentSlide >= totalSlides) currentSlide = 0;
+  updateCarousel();
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  updateCarousel();
+}
+
+function updateCarousel() {
+  const track = document.getElementById('carouselTrack');
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  
+  document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlide);
+  });
+}
 </script>
 
 </body>
