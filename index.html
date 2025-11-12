@@ -290,8 +290,12 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         </li>
       </ul>
       <ul style="margin-top:20px;">
-        <li>Changement des pâtes thermique sur un PC portable</li>
-        <li>Intervention réseau chez Kiko (redondance fibre, diagnostic) – 06/06/2025</li>
+          <li>Changement des pâtes thermique sur un PC portable
+            <button class="btn" onclick="openCarouselModalPaste()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+          </li>
+          <li>Intervention réseau chez Kiko (redondance fibre, diagnostic) – 06/06/2025
+            <button class="btn" onclick="openCarouselModalKiko()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+          </li>
       </ul>
     </div>
   </div>
@@ -430,6 +434,45 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL CHANGEMENT PATE THERMIQUE -->
+<div id="carouselModalPaste" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalPaste()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Changement des pâtes thermique</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselPaste(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackPaste">
+          <div class="carousel-slide"><img src="images/changement pate thermique/IMG_0363.jpg" alt="Pate 1"></div>
+          <div class="carousel-slide"><img src="images/changement pate thermique/IMG_0364.jpg" alt="Pate 2"></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselPaste(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsPaste"></div>
+  </div>
+</div>
+
+<!-- MODALE CARROUSEL INTERVENTION KIKO -->
+<div id="carouselModalKiko" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalKiko()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Intervention réseau chez Kiko</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselKiko(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackKiko">
+          <div class="carousel-slide"><img src="images/Kiko/unnamed.jpg" alt="Kiko 1"></div>
+          <div class="carousel-slide"><img src="images/Kiko/IMG_0496.jpg" alt="Kiko 2"></div>
+          <div class="carousel-slide"><img src="images/Kiko/IMG_0498.jpg" alt="Kiko 3"></div>
+          <div class="carousel-slide"><img src="images/Kiko/IMG_0499.jpg" alt="Kiko 4"></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselKiko(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsKiko"></div>
+  </div>
+</div>
 <script>
 // Gestion des modales et compétences
 document.querySelectorAll('.competence-card').forEach(card=>{
@@ -449,6 +492,10 @@ let currentSlide = 0;
 const totalSlides = 6;
 let currentSlidePC = 0;
 const totalSlidesPC = 3;
+let currentSlidePaste = 0;
+const totalSlidesPaste = 2;
+let currentSlideKiko = 0;
+const totalSlidesKiko = 4;
 
 function openCarouselModal() {
   currentSlide = 0;
@@ -468,6 +515,26 @@ function openCarouselModalPC() {
 
 function closeCarouselModalPC() {
   document.getElementById('carouselModalPC').style.display="none";
+}
+
+function openCarouselModalPaste() {
+  currentSlidePaste = 0;
+  document.getElementById('carouselModalPaste').style.display="flex";
+  initCarouselPaste();
+}
+
+function closeCarouselModalPaste() {
+  document.getElementById('carouselModalPaste').style.display="none";
+}
+
+function openCarouselModalKiko() {
+  currentSlideKiko = 0;
+  document.getElementById('carouselModalKiko').style.display="flex";
+  initCarouselKiko();
+}
+
+function closeCarouselModalKiko() {
+  document.getElementById('carouselModalKiko').style.display="none";
 }
 
 function initCarousel() {
@@ -496,6 +563,31 @@ function initCarouselPC() {
   updateCarouselPC();
 }
 
+function initCarouselPaste() {
+  const dotsContainer = document.getElementById('carouselDotsPaste');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesPaste; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlidePaste(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselPaste();
+}
+
+function initCarouselKiko() {
+  const dotsContainer = document.getElementById('carouselDotsKiko');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesKiko; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideKiko(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselKiko();
+}
 function moveCarousel(direction) {
   currentSlide += direction;
   if(currentSlide < 0) currentSlide = totalSlides - 1;
@@ -510,6 +602,19 @@ function moveCarouselPC(direction) {
   updateCarouselPC();
 }
 
+function moveCarouselPaste(direction) {
+  currentSlidePaste += direction;
+  if(currentSlidePaste < 0) currentSlidePaste = totalSlidesPaste - 1;
+  if(currentSlidePaste >= totalSlidesPaste) currentSlidePaste = 0;
+  updateCarouselPaste();
+}
+
+function moveCarouselKiko(direction) {
+  currentSlideKiko += direction;
+  if(currentSlideKiko < 0) currentSlideKiko = totalSlidesKiko - 1;
+  if(currentSlideKiko >= totalSlidesKiko) currentSlideKiko = 0;
+  updateCarouselKiko();
+}
 function goToSlide(index) {
   currentSlide = index;
   updateCarousel();
@@ -520,6 +625,15 @@ function goToSlidePC(index) {
   updateCarouselPC();
 }
 
+function goToSlidePaste(index) {
+  currentSlidePaste = index;
+  updateCarouselPaste();
+}
+
+function goToSlideKiko(index) {
+  currentSlideKiko = index;
+  updateCarouselKiko();
+}
 function updateCarousel() {
   const track = document.getElementById('carouselTrack');
   track.style.transform = `translateX(-${currentSlide * 100}%)`;
@@ -538,6 +652,23 @@ function updateCarouselPC() {
   });
 }
 
+function updateCarouselPaste() {
+  const track = document.getElementById('carouselTrackPaste');
+  track.style.transform = `translateX(-${currentSlidePaste * 100}%)`;
+  
+  document.querySelectorAll('#carouselModalPaste .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlidePaste);
+  });
+}
+
+function updateCarouselKiko() {
+  const track = document.getElementById('carouselTrackKiko');
+  track.style.transform = `translateX(-${currentSlideKiko * 100}%)`;
+  
+  document.querySelectorAll('#carouselModalKiko .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideKiko);
+  });
+}
 // Fermer la modale carrousel au clic sur le fond
 document.getElementById('carouselModal').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModal') closeCarouselModal();
@@ -545,6 +676,14 @@ document.getElementById('carouselModal').addEventListener('click', (e) => {
 
 document.getElementById('carouselModalPC').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalPC') closeCarouselModalPC();
+});
+
+document.getElementById('carouselModalPaste').addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalPaste') closeCarouselModalPaste();
+});
+
+document.getElementById('carouselModalKiko').addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalKiko') closeCarouselModalKiko();
 });
 </script>
 
