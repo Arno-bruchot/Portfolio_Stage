@@ -272,8 +272,8 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         </li>
       </ul>
       <ul style="margin-top:20px;">
-        <li>Finalisation et remise d'un PC client (mise à jour complète, installation de logiciels, configuration, tests)  – 05/06/2025</li>
-        <li>Installation d'un serveur OpenMediaVault avec RAID BTRFS, configuration d'Hyper Backup – 21/06/2025</li>
+        <li></li>
+        <li></li>
       </ul>
     </div>
   </div>
@@ -285,8 +285,12 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
       <p>Assurer le support utilisateurs et résoudre les problèmes techniques.</p>
       <h4>💼 Missions associées :</h4>
       <ul>
-        <li>Mise en service d’un PC neuf : remplacement SSD, installation Windows 11, mises à jour et logiciels professionnels. – 03/06/2025 au 07/06/2025</li>
-        <li>Finalisation et remise d’un PC client (MAJ, logiciels, tests) – 05/06/2025</li>
+        <li>Mise à neuf d'un PC : remplacement SSD, installation Windows 11, mises à jour et logiciels professionnels. – 03/06/2025 au 07/06/2025
+          <button class="btn" onclick="openCarouselModalPC()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+        </li>
+      </ul>
+      <ul style="margin-top:20px;">
+        <li>Changement des pâtes thermique sur un PC portable</li>
         <li>Intervention réseau chez Kiko (redondance fibre, diagnostic) – 06/06/2025</li>
       </ul>
     </div>
@@ -406,6 +410,26 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL MISE A NEUF PC -->
+<div id="carouselModalPC" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalPC()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Mise à neuf d'un PC</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselPC(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackPC">
+          <div class="carousel-slide"><img src="images/Mise_a_neuf/IMG_0686.jpg" alt="PC 1"></div>
+          <div class="carousel-slide"><img src="images/Mise_a_neuf/IMG_0690.jpg" alt="PC 2"></div>
+          <div class="carousel-slide"><img src="images/Mise_a_neuf/IMG_0691.jpg" alt="PC 3"></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselPC(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsPC"></div>
+  </div>
+</div>
+
 <script>
 // Gestion des modales et compétences
 document.querySelectorAll('.competence-card').forEach(card=>{
@@ -423,6 +447,8 @@ window.addEventListener('click',e=>{
 // Gestion du carrousel
 let currentSlide = 0;
 const totalSlides = 6;
+let currentSlidePC = 0;
+const totalSlidesPC = 3;
 
 function openCarouselModal() {
   currentSlide = 0;
@@ -432,6 +458,16 @@ function openCarouselModal() {
 
 function closeCarouselModal() {
   document.getElementById('carouselModal').style.display="none";
+}
+
+function openCarouselModalPC() {
+  currentSlidePC = 0;
+  document.getElementById('carouselModalPC').style.display="flex";
+  initCarouselPC();
+}
+
+function closeCarouselModalPC() {
+  document.getElementById('carouselModalPC').style.display="none";
 }
 
 function initCarousel() {
@@ -447,6 +483,19 @@ function initCarousel() {
   updateCarousel();
 }
 
+function initCarouselPC() {
+  const dotsContainer = document.getElementById('carouselDotsPC');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesPC; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlidePC(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselPC();
+}
+
 function moveCarousel(direction) {
   currentSlide += direction;
   if(currentSlide < 0) currentSlide = totalSlides - 1;
@@ -454,23 +503,48 @@ function moveCarousel(direction) {
   updateCarousel();
 }
 
+function moveCarouselPC(direction) {
+  currentSlidePC += direction;
+  if(currentSlidePC < 0) currentSlidePC = totalSlidesPC - 1;
+  if(currentSlidePC >= totalSlidesPC) currentSlidePC = 0;
+  updateCarouselPC();
+}
+
 function goToSlide(index) {
   currentSlide = index;
   updateCarousel();
+}
+
+function goToSlidePC(index) {
+  currentSlidePC = index;
+  updateCarouselPC();
 }
 
 function updateCarousel() {
   const track = document.getElementById('carouselTrack');
   track.style.transform = `translateX(-${currentSlide * 100}%)`;
   
-  document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+  document.querySelectorAll('#carouselModal .carousel-dot').forEach((dot, index) => {
     dot.classList.toggle('active', index === currentSlide);
+  });
+}
+
+function updateCarouselPC() {
+  const track = document.getElementById('carouselTrackPC');
+  track.style.transform = `translateX(-${currentSlidePC * 100}%)`;
+  
+  document.querySelectorAll('#carouselModalPC .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlidePC);
   });
 }
 
 // Fermer la modale carrousel au clic sur le fond
 document.getElementById('carouselModal').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModal') closeCarouselModal();
+});
+
+document.getElementById('carouselModalPC').addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalPC') closeCarouselModalPC();
 });
 </script>
 
