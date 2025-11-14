@@ -138,6 +138,10 @@ section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-ra
 .scareware-entry .sw-title{font-weight:700;color:#c0392b;margin-bottom:6px}
 .tool-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .tool-badge{background:#3f3d56;color:#fff;padding:5px 8px;border-radius:6px;font-size:0.85rem}
+/* Mission entry neutral (used for batteries replacement) */
+.mission-entry{background:#f9f9f9;padding:12px;border-radius:8px;display:flex;gap:12px;align-items:flex-start}
+.mission-entry .sw-body{flex:1;text-align:left}
+.mission-entry .sw-title{font-weight:700;color:#3f3d56;margin-bottom:6px}
 @keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 
 /* ===== CONTACT ===== */
@@ -324,18 +328,12 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           </div>
         </li>
       </ul>
-        <h4 style="margin-top:18px">🔋 Changement de batteries d'onduleur :</h4>
         <ul style="margin-top:8px">
           <li>
-            <div class="scareware-entry" style="align-items:flex-start">
+            <div class="mission-entry" style="align-items:flex-start">
               <div class="sw-body">
                 <div class="sw-title">Remplacement des batteries d'un onduleur</div>
                 <div>Diagnostic de la panne (message <em>BAT</em> sur l'écran), extraction des anciennes batteries, installation des nouvelles batteries blanches et vérification du bon fonctionnement de l'onduleur.</div>
-                <div class="tool-badges">
-                  <span class="tool-badge">Contrôle tension</span>
-                  <span class="tool-badge">Remplacement</span>
-                  <span class="tool-badge">Tests fonctionnels</span>
-                </div>
                 <div style="margin-top:8px">
                   <button class="btn" onclick="openCarouselModalBatteries()" style="padding:6px 10px;font-size:0.9rem">📸 Voir les photos</button>
                 </div>
@@ -344,8 +342,6 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           </li>
         </ul>
       <ul style="margin-top:20px;">
-        <li></li>
-        <li></li>
       </ul>
     </div>
   </div>
