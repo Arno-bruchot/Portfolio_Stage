@@ -111,6 +111,12 @@ section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-ra
 .modal-close{position:absolute;top:15px;right:20px;font-size:22px;cursor:pointer;color:#333}
 .modal-content ul{text-align:left;margin-top:15px;padding-left:22px}
 .modal-content li{display:list-item;margin-bottom:12px}
+.scareware-entry{background:linear-gradient(180deg,#fff7f7,#fff);border-left:4px solid #ff6b6b;padding:12px;border-radius:8px;display:flex;gap:12px;align-items:flex-start}
+.scareware-entry img{width:90px;height:66px;object-fit:cover;border-radius:6px}
+.scareware-entry .sw-body{flex:1;text-align:left}
+.scareware-entry .sw-title{font-weight:700;color:#c0392b;margin-bottom:6px}
+.tool-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tool-badge{background:#3f3d56;color:#fff;padding:5px 8px;border-radius:6px;font-size:0.85rem}
 @keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
 
 /* ===== CONTACT ===== */
@@ -275,6 +281,29 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           <button class="btn" onclick="openCarouselModal()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
         </li>
       </ul>
+      <h4 style="margin-top:18px">🔧 Intervention spécifique :</h4>
+      <ul style="margin-top:8px">
+        <li>
+          <div class="scareware-entry">
+            <img src="images/scareware/1.jfif" alt="Scareware capture">
+            <div class="sw-body">
+              <div class="sw-title">Gestion d'un scareware et désinfection de ce PC</div>
+              <div>Analyse complète et nettoyage du système : suppression des éléments malveillants, restauration des configurations et vérification des services.</div>
+              <div class="tool-badges">
+                <span class="tool-badge">CCleaner</span>
+                <span class="tool-badge">AdwCleaner</span>
+                <span class="tool-badge">Malwarebytes</span>
+                <span class="tool-badge">RogueKiller</span>
+                <span class="tool-badge">ZHPCleaner</span>
+                <span class="tool-badge">Kaspersky</span>
+              </div>
+              <div style="margin-top:8px">
+                <a href="images/scareware/1.jfif" target="_blank" class="btn" style="padding:6px 10px;font-size:0.9rem">🔍 Voir la capture</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
       <ul style="margin-top:20px;">
         <li></li>
         <li></li>
@@ -411,7 +440,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
               <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0580.jpg" alt="NAS 3"><div class="carousel-caption">Photo 3/6 — Montage des deux disques SSD de 500GB chacuns</div></div>
               <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0581.jpg" alt="NAS 4"><div class="carousel-caption">Photo 4/6 — Installation des barettes de RAM</div></div>
               <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0582.jpg" alt="NAS 5"><div class="carousel-caption">Photo 5/6 — Installation des 2 disques de 4To chacuns</div></div>
-              <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0585.jpg" alt="NAS 6"><div class="carousel-caption">Photo 6/6 — Remontage de la coqu de protaction, mise en route, installation des services demandés par le client.</div></div>
+              <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0585.jpg" alt="NAS 6"><div class="carousel-caption">Photo 6/6 — Remontage de la coque de protaction, mise en route, installation des services demandés par le client.</div></div>
             </div>
       </div>
       <button class="carousel-nav next" onclick="moveCarousel(1)">❯</button>
