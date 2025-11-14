@@ -37,28 +37,6 @@ section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-ra
 /* ===== BTN ===== */
 .btn{display:inline-block;padding:12px 25px;margin:10px;background:#3f3d56;color:#fff;border-radius:8px;transition:.3s}
 .btn:hover{background:#5a58a3}
-
-<!-- MODALE CARROUSEL BATTERIES ONDULEUR -->
-<div id="carouselModalBatteries" class="carousel-modal">
-  <div class="carousel-modal-content">
-    <button class="carousel-modal-close" onclick="closeCarouselModalBatteries()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Changement Batteries Onduleur</h3>
-    <div class="carousel-container">
-      <button class="carousel-nav prev" onclick="moveCarouselBatteries(-1)">❮</button>
-      <div class="carousel-wrapper">
-        <div class="carousel-track" id="carouselTrackBatteries">
-          <div class="carousel-slide"><img src="images/Batteries onduleur/unnamed.jpg" alt="Onduleur - écran BAT"><div class="carousel-caption">1/4 — Onduleur de face, message 'BAT' indiquant batterie HS</div></div>
-          <div class="carousel-slide"><img src="images/Batteries onduleur/IMG_0655.jpg" alt="Onduleur ouvert - anciennes batteries"><div class="carousel-caption">2/4 — Onduleur ouvert avec les anciennes batteries noires</div></div>
-          <div class="carousel-slide"><img src="images/Batteries onduleur/IMG_0656.jpg" alt="Batteries blanches à côté"><div class="carousel-caption">3/4 — Nouvelles batteries blanches posées à côté avant installation</div></div>
-          <div class="carousel-slide"><img src="images/Batteries onduleur/IMG_0657.jpg" alt="Onduleur refermé"><div class="carousel-caption">4/4 — Onduleur refermé, vue d'ensemble après remplacement</div></div>
-        </div>
-      </div>
-      <button class="carousel-nav next" onclick="moveCarouselBatteries(1)">❯</button>
-    </div>
-    <div class="carousel-dots" id="carouselDotsBatteries"></div>
-  </div>
-</div>
-
 /* ===== TIMELINE ===== */
 .timeline{position:relative;margin:40px 0;padding-left:20px}
 .timeline::before{content:"";position:absolute;left:20px;top:0;width:4px;height:100%;background:#3f3d56;border-radius:2px}
@@ -462,6 +440,27 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 </footer>
 
 <!-- MODALE CARROUSEL NAS -->
+<!-- MODALE CARROUSEL BATTERIES ONDULEUR -->
+<div id="carouselModalBatteries" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalBatteries()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Changement Batteries Onduleur</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselBatteries(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackBatteries">
+          <div class="carousel-slide"><img src="images/Batteries onduleur/unnamed.jpg" alt="Onduleur - écran BAT"><div class="carousel-caption">1/4 — Onduleur de face, message 'BAT' indiquant batterie HS</div></div>
+          <div class="carousel-slide"><img src="images/Batteries onduleur/IMG_0655.jpg" alt="Onduleur ouvert - anciennes batteries"><div class="carousel-caption">2/4 — Onduleur ouvert avec les anciennes batteries noires</div></div>
+          <div class="carousel-slide"><img src="images/Batteries onduleur/IMG_0656.jpg" alt="Batteries blanches à côté"><div class="carousel-caption">3/4 — Nouvelles batteries blanches posées à côté avant installation</div></div>
+          <div class="carousel-slide"><img src="images/Batteries onduleur/IMG_0657.jpg" alt="Onduleur refermé"><div class="carousel-caption">4/4 — Onduleur refermé, vue d'ensemble après remplacement</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselBatteries(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsBatteries"></div>
+  </div>
+</div>
+
 <div id="carouselModal" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModal()">✕</button>
