@@ -288,7 +288,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
               <div class="sw-title">Gestion d'un scareware et désinfection de ce PC</div>
               <div>Analyse complète et nettoyage du système : suppression des éléments malveillants, restauration des configurations et vérification des services.</div>
               <div class="tool-badges">
-                <div>Passage de ces différents outils de nettoyage</div>
+                <div>Passage de ces différents outils de nettoyage</div><br>
                 <span class="tool-badge">CCleaner</span>
                 <span class="tool-badge">AdwCleaner</span>
                 <span class="tool-badge">Malwarebytes</span>
@@ -297,7 +297,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
                 <span class="tool-badge">Kaspersky</span>
               </div>
               <div style="margin-top:8px">
-                <a href="images/scareware/unnamed.jpg" target="_blank" class="btn" style="padding:6px 10px;font-size:0.9rem">📸 Voir la photo</a>
+                <button class="btn" onclick="openCarouselModalScareware()" style="padding:6px 10px;font-size:0.9rem">📸 Voir la photo</button>
               </div>
             </div>
           </div>
@@ -507,6 +507,24 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
     <div class="carousel-dots" id="carouselDotsKiko"></div>
   </div>
 </div>
+
+<!-- MODALE CARROUSEL SCAREWARE -->
+<div id="carouselModalScareware" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalScareware()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Gestion Scareware</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselScareware(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackScareware">
+          <div class="carousel-slide"><img src="images/scareware/unnamed.jpg" alt="Scareware"><div class="carousel-caption">Capture — Désinfection réalisée (CCleaner, AdwCleaner, Malwarebytes, RogueKiller, ZHPCleaner, Kaspersky)</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselScareware(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsScareware"></div>
+  </div>
+</div>
 <script>
 // Gestion des modales et compétences
 document.querySelectorAll('.competence-card').forEach(card=>{
@@ -530,6 +548,8 @@ let currentSlidePaste = 0;
 const totalSlidesPaste = 2;
 let currentSlideKiko = 0;
 const totalSlidesKiko = 4;
+let currentSlideScareware = 0;
+const totalSlidesScareware = 1;
 
 function openCarouselModal() {
   currentSlide = 0;
@@ -703,6 +723,50 @@ function updateCarouselKiko() {
     dot.classList.toggle('active', index === currentSlideKiko);
   });
 }
+
+// --- Scareware carousel functions ---
+function openCarouselModalScareware() {
+  currentSlideScareware = 0;
+  document.getElementById('carouselModalScareware').style.display = "flex";
+  initCarouselScareware();
+}
+
+function closeCarouselModalScareware() {
+  document.getElementById('carouselModalScareware').style.display = "none";
+}
+
+function initCarouselScareware() {
+  const dotsContainer = document.getElementById('carouselDotsScareware');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesScareware; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideScareware(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselScareware();
+}
+
+function moveCarouselScareware(direction) {
+  currentSlideScareware += direction;
+  if(currentSlideScareware < 0) currentSlideScareware = totalSlidesScareware - 1;
+  if(currentSlideScareware >= totalSlidesScareware) currentSlideScareware = 0;
+  updateCarouselScareware();
+}
+
+function goToSlideScareware(index) {
+  currentSlideScareware = index;
+  updateCarouselScareware();
+}
+
+function updateCarouselScareware() {
+  const track = document.getElementById('carouselTrackScareware');
+  if(track) track.style.transform = `translateX(-${currentSlideScareware * 100}%)`;
+  document.querySelectorAll('#carouselModalScareware .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideScareware);
+  });
+}
 // Fermer la modale carrousel au clic sur le fond
 document.getElementById('carouselModal').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModal') closeCarouselModal();
@@ -718,6 +782,10 @@ document.getElementById('carouselModalPaste').addEventListener('click', (e) => {
 
 document.getElementById('carouselModalKiko').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalKiko') closeCarouselModalKiko();
+});
+
+document.getElementById('carouselModalScareware')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalScareware') closeCarouselModalScareware();
 });
 </script>
 
