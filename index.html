@@ -319,6 +319,20 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
             </div>
           </li>
         </ul>
+        <ul style="margin-top:8px">
+          <li>
+            <div class="mission-entry" style="align-items:flex-start">
+              <div class="sw-body">
+                <div class="sw-title">Projet Proxmox — Infrastructure virtualisée</div>
+                <div><strong>Gérer le patrimoine informatique :</strong> Déploiement complet d'une infrastructure virtualisée sous Proxmox avec routage, NAT et firewall MikroTik. Configuration des interfaces, plan d'adressage, services réseau (DNS, Apache), et documentation technique.</div>
+                <div style="margin-top:8px">
+                  <button class="btn" onclick="openCarouselModalProxmox()" style="padding:6px 10px;font-size:0.9rem">📸 Voir le schéma</button>
+                  <a href="images/Projet Proxmox/Documentation_Projet_Proxmox2.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;margin-left:8px;text-decoration:none">📄 Documentation</a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
       <ul style="margin-top:20px;">
       </ul>
     </div>
@@ -367,6 +381,17 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
       <h4>💼 Missions associées :</h4>
       <ul>
         <li>Participation à un hackathon (solution technique pour Renault) – 2025</li>
+        <li>
+          <div class="mission-entry" style="align-items:flex-start;background:none;padding:0;display:block">
+            <div class="sw-body">
+              <div class="sw-title">Projet Proxmox — Structuration et documentation</div>
+              <div>Structuration du projet, documentation complète, validation des étapes techniques, préparation d'un livrable portfolio-ready.</div>
+              <div style="margin-top:8px">
+                <a href="images/Projet Proxmox/Documentation_Projet_Proxmox2.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;text-decoration:none">📄 Documentation</a>
+              </div>
+            </div>
+          </div>
+        </li>
       </ul>
       <img src="images/hack.jpg" alt="Hackathon" style="max-width:100%;height:auto;border-radius:8px;margin:12px 0;display:block;margin-left:auto;margin-right:auto">
 
@@ -384,6 +409,18 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           Création d'un NAS sécurisé — Docker, RAID, Nextcloud, Jellyfin; installation serveur OpenMediaVault (RAID, sauvegardes) et déploiement Nextcloud.
           – 05/06/2025 / 21/06/2025
           <button class="btn" onclick="openCarouselModal()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+        </li>
+        <li style="margin-top:15px">
+          <div class="mission-entry" style="align-items:flex-start">
+            <div class="sw-body">
+              <div class="sw-title">Projet Proxmox — Serveur Apache en DMZ</div>
+              <div>Mise en place d'un serveur Apache dans la DMZ, sécurisé par firewall. Accès contrôlé depuis le LAN, validation par tests (curl, navigateur), preuve de bon fonctionnement.</div>
+              <div style="margin-top:8px">
+                <button class="btn" onclick="openCarouselModalProxmox()" style="padding:6px 10px;font-size:0.9rem">📸 Voir le schéma</button>
+                <a href="images/Projet Proxmox/Documentation_Projet_Proxmox2.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;margin-left:8px;text-decoration:none">📄 Documentation</a>
+              </div>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
@@ -560,6 +597,25 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
     <div class="carousel-dots" id="carouselDotsScareware"></div>
   </div>
 </div>
+
+<!-- MODALE CARROUSEL PROJET PROXMOX -->
+<div id="carouselModalProxmox" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalProxmox()">✕</button>
+    <h3 style="margin-bottom:20px">📊 Schéma Réseau - Projet Proxmox</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselProxmox(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackProxmox">
+          <div class="carousel-slide"><img src="images/Projet Proxmox/image.png" alt="Schéma Proxmox"><div class="carousel-caption">Infrastructure virtualisée avec Proxmox, MikroTik, services réseau et Apache en DMZ</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselProxmox(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsProxmox"></div>
+  </div>
+</div>
+
 <script>
 // Gestion des modales et compétences
 document.querySelectorAll('.competence-card').forEach(card=>{
@@ -587,6 +643,8 @@ let currentSlideScareware = 0;
 const totalSlidesScareware = 1;
 let currentSlideBatteries = 0;
 const totalSlidesBatteries = 4;
+let currentSlideProxmox = 0;
+const totalSlidesProxmox = 1;
 
 function openCarouselModal() {
   currentSlide = 0;
@@ -847,6 +905,49 @@ function updateCarouselBatteries() {
     dot.classList.toggle('active', index === currentSlideBatteries);
   });
 }
+// --- Proxmox carousel functions ---
+function openCarouselModalProxmox() {
+  currentSlideProxmox = 0;
+  document.getElementById('carouselModalProxmox').style.display = "flex";
+  initCarouselProxmox();
+}
+
+function closeCarouselModalProxmox() {
+  document.getElementById('carouselModalProxmox').style.display = "none";
+}
+
+function initCarouselProxmox() {
+  const dotsContainer = document.getElementById('carouselDotsProxmox');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesProxmox; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideProxmox(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselProxmox();
+}
+
+function moveCarouselProxmox(direction) {
+  currentSlideProxmox += direction;
+  if(currentSlideProxmox < 0) currentSlideProxmox = totalSlidesProxmox - 1;
+  if(currentSlideProxmox >= totalSlidesProxmox) currentSlideProxmox = 0;
+  updateCarouselProxmox();
+}
+
+function goToSlideProxmox(index) {
+  currentSlideProxmox = index;
+  updateCarouselProxmox();
+}
+
+function updateCarouselProxmox() {
+  const track = document.getElementById('carouselTrackProxmox');
+  if(track) track.style.transform = `translateX(-${currentSlideProxmox * 100}%)`;
+  document.querySelectorAll('#carouselModalProxmox .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideProxmox);
+  });
+}
 // Fermer la modale carrousel au clic sur le fond
 document.getElementById('carouselModal').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModal') closeCarouselModal();
@@ -870,6 +971,10 @@ document.getElementById('carouselModalScareware')?.addEventListener('click', (e)
 
 document.getElementById('carouselModalBatteries')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalBatteries') closeCarouselModalBatteries();
+});
+
+document.getElementById('carouselModalProxmox')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalProxmox') closeCarouselModalProxmox();
 });
 </script>
 
