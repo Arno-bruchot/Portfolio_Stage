@@ -104,7 +104,7 @@ section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-ra
 
 /* ===== MODALE ===== */
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);justify-content:center;align-items:center;z-index:2000}
-.modal-content{background:#fff;padding:30px;border-radius:12px;max-width:600px;width:90%;text-align:center;animation:fadeIn .4s ease}
+.modal-content{background:#fff;padding:30px;border-radius:12px;max-width:600px;width:90%;text-align:center;animation:fadeIn .4s ease;max-height:80vh;overflow-y:auto}
 .modal-content h3{margin-bottom:15px;color:#3f3d56}
 .modal-content ul{text-align:left;margin-top:15px}
 .modal-close{position:absolute;top:15px;right:20px;font-size:22px;cursor:pointer;color:#333}
@@ -380,7 +380,9 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
       <p>Collaboration, planification et gestion de projets IT.</p>
       <h4>💼 Missions associées :</h4>
       <ul>
-        <li>Participation à un hackathon (solution technique pour Renault) – 2025</li>
+        <li>Participation à un hackathon (solution technique pour Renault) – 2025
+          <button class="btn" onclick="openCarouselModalHackathon()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir la photo</button>
+        </li>
         <li>
           <div class="mission-entry" style="align-items:flex-start;background:none;padding:0;display:block">
             <div class="sw-body">
@@ -393,7 +395,6 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           </div>
         </li>
       </ul>
-      <img src="images/hack.jpg" alt="Hackathon" style="max-width:100%;height:auto;border-radius:8px;margin:12px 0;display:block;margin-left:auto;margin-right:auto">
 
     </div>
   </div>
@@ -616,6 +617,24 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL HACKATHON -->
+<div id="carouselModalHackathon" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalHackathon()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Hackathon</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselHackathon(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackHackathon">
+          <div class="carousel-slide"><img src="images/hack.jpg" alt="Hackathon"><div class="carousel-caption">Participation à un hackathon - Solution technique pour Renault</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselHackathon(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsHackathon"></div>
+  </div>
+</div>
+
 <script>
 // Gestion des modales et compétences
 document.querySelectorAll('.competence-card').forEach(card=>{
@@ -645,6 +664,8 @@ let currentSlideBatteries = 0;
 const totalSlidesBatteries = 4;
 let currentSlideProxmox = 0;
 const totalSlidesProxmox = 1;
+let currentSlideHackathon = 0;
+const totalSlidesHackathon = 1;
 
 function openCarouselModal() {
   currentSlide = 0;
@@ -948,6 +969,49 @@ function updateCarouselProxmox() {
     dot.classList.toggle('active', index === currentSlideProxmox);
   });
 }
+// --- Hackathon carousel functions ---
+function openCarouselModalHackathon() {
+  currentSlideHackathon = 0;
+  document.getElementById('carouselModalHackathon').style.display = "flex";
+  initCarouselHackathon();
+}
+
+function closeCarouselModalHackathon() {
+  document.getElementById('carouselModalHackathon').style.display = "none";
+}
+
+function initCarouselHackathon() {
+  const dotsContainer = document.getElementById('carouselDotsHackathon');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesHackathon; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideHackathon(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselHackathon();
+}
+
+function moveCarouselHackathon(direction) {
+  currentSlideHackathon += direction;
+  if(currentSlideHackathon < 0) currentSlideHackathon = totalSlidesHackathon - 1;
+  if(currentSlideHackathon >= totalSlidesHackathon) currentSlideHackathon = 0;
+  updateCarouselHackathon();
+}
+
+function goToSlideHackathon(index) {
+  currentSlideHackathon = index;
+  updateCarouselHackathon();
+}
+
+function updateCarouselHackathon() {
+  const track = document.getElementById('carouselTrackHackathon');
+  if(track) track.style.transform = `translateX(-${currentSlideHackathon * 100}%)`;
+  document.querySelectorAll('#carouselModalHackathon .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideHackathon);
+  });
+}
 // Fermer la modale carrousel au clic sur le fond
 document.getElementById('carouselModal').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModal') closeCarouselModal();
@@ -975,6 +1039,10 @@ document.getElementById('carouselModalBatteries')?.addEventListener('click', (e)
 
 document.getElementById('carouselModalProxmox')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalProxmox') closeCarouselModalProxmox();
+});
+
+document.getElementById('carouselModalHackathon')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalHackathon') closeCarouselModalHackathon();
 });
 </script>
 
