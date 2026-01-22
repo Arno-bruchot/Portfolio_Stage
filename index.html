@@ -149,6 +149,30 @@ section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-ra
 
 /* ===== FOOTER ===== */
 footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:40px}
+
+/* ===== ANIMATIONS AU SCROLL ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
 </style>
 </head>
 <body>
@@ -170,7 +194,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 
 <main>
   <!-- INTRO -->
-  <section id="intro">
+  <section id="intro" class="scroll-animate">
     <h2>👨‍💻 Bienvenue</h2>
     <p>Je suis étudiant en BTS SIO option SISR. Découvrez mon parcours, mes compétences et mes projets.</p>
   <a href="pdf/cv.pdf" target="_blank" class="btn">📄 Voir mon CV</a>
@@ -181,7 +205,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 
 
   <!-- PARCOURS -->
-  <section id="parcours">
+  <section id="parcours" class="scroll-animate">
     <h2>Mon parcours scolaire</h2>
     <div class="timeline">
       <div class="timeline-item">
@@ -207,7 +231,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
       </div>
     </div>
   </section>
-  <section id="certifications">
+  <section id="certifications" class="scroll-animate">
     <h2>🏅 Certifications & Formations en cours</h2>
     <div class="certifications-container">
       <div class="certif-card">
@@ -247,7 +271,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
       <p style="text-align:left;margin:0;color:#666;font-weight:500"><strong>Objectif :</strong> maîtriser les fondamentaux de la sécurité défensive.</p>
     </div>
   </section>
-<section id="competences">
+<section id="competences" class="scroll-animate">
     <h2>👨‍💻 Mes compétences développement</h2>
     <div class="bulles">
       <div class="bulle"><i class="fab fa-html5"></i><span>HTML5</span></div>
@@ -270,7 +294,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </section>
 
   <!-- COMPETENCES TECHNIQUES -->
-  <section id="competences-techniques">
+  <section id="competences-techniques" class="scroll-animate">
     <h2>🔧 Compétences techniques</h2>
     <div style="max-width:900px;margin:0 auto">
       <div style="background:#f9f9f9;padding:20px;border-radius:12px">
@@ -306,7 +330,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
     </div>
   </section>
   <!-- STAGE -->
-  <section id="stage">
+  <section id="stage" class="scroll-animate">
     <h2>💼 Mon stage de première année</h2>
     <p>Mon stage de 1ère année s'est déroulé chez <strong>DépanOrdi</strong> à Bordeaux, du 19 mai 2024 au 27 juin 2024.</p>
     <p>J'ai eu l'opportunité de travailler sur divers projets ce qui a renforcé mes compétences en informatique et en réseaux.</p>
@@ -321,7 +345,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </section>
 
   <!-- COMPETENCES -->
-  <section id="competences-missions">
+  <section id="competences-missions" class="scroll-animate">
     <h2>💡 Compétences mobilisées</h2>
     <div class="competence-grid" style="grid-template-columns:repeat(3,1fr)">
       <div class="competence-card" data-modal="m1">Gérer le patrimoine informatique</div>
@@ -531,7 +555,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 
   <!-- CONTACT -->
    <!-- CONTACT -->
-  <section id="contact">
+  <section id="contact" class="scroll-animate">
     <h2>📬 Contact</h2>
     <p>Vous pouvez me joindre via mes réseaux, par mail ou en utilisant ce formulaire :</p>
 
@@ -1133,6 +1157,26 @@ document.getElementById('carouselModalProxmox')?.addEventListener('click', (e) =
 
 document.getElementById('carouselModalHackathon')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalHackathon') closeCarouselModalHackathon();
+});
+
+// ===== INTERSECTION OBSERVER POUR ANIMATION AU SCROLL =====
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+// Observer tous les éléments avec la classe scroll-animate
+document.querySelectorAll('.scroll-animate').forEach(element => {
+  observer.observe(element);
 });
 </script>
 
