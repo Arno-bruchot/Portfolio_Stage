@@ -173,6 +173,50 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   transform: translateY(0);
   animation: fadeInUp 0.8s ease-out forwards;
 }
+
+/* ===== EFFET MACHINE À ÉCRIRE ===== */
+.typewriter-container {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 12px;
+  min-height: 28px;
+  font-family: 'Courier New', monospace;
+}
+
+#typewriter-text {
+  display: inline;
+}
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: #ffd369;
+  margin-left: 2px;
+  animation: blink 0.7s infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%, 49% {
+    background-color: #ffd369;
+    opacity: 1;
+  }
+  50%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Responsive pour mobile */
+@media (max-width: 768px) {
+  .typewriter-container {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+  }
+}
 </style>
 </head>
 <body>
@@ -180,6 +224,10 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <header>
   <div style="font-family:'Poppins',sans-serif;font-size:2.2rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00bfae;margin-bottom:8px;">
     ARNO Bruchot
+  </div>
+  <!-- Effet machine à écrire -->
+  <div class="typewriter-container">
+    <span id="typewriter-text"></span><span class="cursor"></span>
   </div>
   <nav>
     <a href="#intro">Accueil</a>
@@ -1157,6 +1205,26 @@ document.getElementById('carouselModalProxmox')?.addEventListener('click', (e) =
 
 document.getElementById('carouselModalHackathon')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalHackathon') closeCarouselModalHackathon();
+});
+
+// ===== EFFET MACHINE À ÉCRIRE (TYPEWRITER) =====
+const typewriterText = "Étudiant en cybersécurité — Actuellement en recherche d'alternance";
+const typewriterElement = document.getElementById('typewriter-text');
+let charIndex = 0;
+const typingSpeed = 50; // ms par caractère
+const delayBeforeStart = 500; // délai avant de commencer
+
+function typeWriter() {
+  if (charIndex < typewriterText.length) {
+    typewriterElement.textContent += typewriterText.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeWriter, typingSpeed);
+  }
+}
+
+// Démarrer l'animation au chargement de la page
+window.addEventListener('load', () => {
+  setTimeout(typeWriter, delayBeforeStart);
 });
 
 // ===== INTERSECTION OBSERVER POUR ANIMATION AU SCROLL =====
