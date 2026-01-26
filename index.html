@@ -10,7 +10,7 @@
 <style>
 /* ===== GLOBAL ===== */
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#f5f7fa,#c3cfe2);color:#333;line-height:1.6}
+body{font-family:'Poppins',sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
 a{text-decoration:none;color:inherit}
 h1,h2,h3{font-weight:700;text-align:center;color:#3f3d56}
 h1{font-size:2.5rem;margin-bottom:15px}
@@ -24,13 +24,13 @@ header nav a{margin:0 15px;font-weight:600;color:#fff;transition:.3s}
 header nav a:hover{color:#ffd369}
 
 /* ===== SECTIONS ===== */
-section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-radius:15px;box-shadow:0 6px 18px rgba(0,0,0,.1)}
+section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-radius:15px;box-shadow:0 4px 16px rgba(0,0,0,.08)}
    .certifications-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:20px}
-    .certif-card{background:#f0f0fa;padding:20px;border-radius:12px;text-align:center;box-shadow:0 6px 12px rgba(0,0,0,.1)}
+    .certif-card{background:#f8f9fb;padding:20px;border-radius:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid #eee}
     .certif-card img{max-width:150px;margin-top:10px}
     
     .bulles{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-top:20px}
-    .bulle{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f9f9f9;width:120px;height:120px;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,.1);transition:.3s;font-weight:600}
+    .bulle{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;width:120px;height:120px;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.06);transition:.3s;font-weight:600;border:1px solid #eee}
         .bulle{text-align:center}
     .bulle i{font-size:2rem;margin-bottom:10px;color:#3f3d56}
     .bulle:hover{transform:scale(1.1);background:#ffd369}
@@ -42,20 +42,21 @@ section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-ra
 .timeline::before{content:"";position:absolute;left:20px;top:0;width:4px;height:100%;background:#3f3d56;border-radius:2px}
 .timeline-item{position:relative;margin-bottom:30px;padding-left:50px}
 .timeline-dot{position:absolute;left:12px;top:5px;width:16px;height:16px;background:#ffd369;border:3px solid #3f3d56;border-radius:50%}
-.timeline-content{background:#f9f9f9;padding:15px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.timeline-content{background:#f8f9fb;padding:15px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:3px solid #ffd369}
 
 /* ===== COMPETENCES ===== */
 .competence-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;margin-top:30px}
-.competence-card{background:#f0f0fa;padding:20px;border-radius:12px;text-align:center;font-weight:600;cursor:pointer;transition:.3s}
-.competence-card:hover{transform:translateY(-5px);box-shadow:0 6px 15px rgba(0,0,0,.15)}
+.competence-card{background:#f8f9fb;padding:20px;border-radius:12px;text-align:center;font-weight:600;cursor:pointer;transition:.3s;border:1px solid #eee}
+.competence-card:hover{transform:translateY(-5px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
 /* ===== FORMULAIRE DE CONTACT ===== */
 .contact-form {
   max-width: 600px;
   margin: 30px auto;
-  background: #f9f9f9;
+  background: #f8f9fb;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  border: 1px solid #eee;
 }
 
 .contact-form .form-group {
@@ -110,14 +111,14 @@ section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-ra
 .modal-close{position:absolute;top:15px;right:20px;font-size:22px;cursor:pointer;color:#333}
 .modal-content ul{text-align:left;margin-top:15px;padding-left:22px}
 .modal-content li{display:list-item;margin-bottom:12px}
-.scareware-entry{background:linear-gradient(180deg,#fff7f7,#fff);border-left:4px solid #ff6b6b;padding:12px;border-radius:8px;display:flex;gap:12px;align-items:flex-start}
+.scareware-entry{background:linear-gradient(180deg,#fef8f8,#fefcfc);border-left:4px solid #ff6b6b;padding:12px;border-radius:8px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,.06)}
 .scareware-entry img{width:90px;height:66px;object-fit:cover;border-radius:6px}
 .scareware-entry .sw-body{flex:1;text-align:left}
 .scareware-entry .sw-title{font-weight:700;color:#c0392b;margin-bottom:6px}
 .tool-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .tool-badge{background:#3f3d56;color:#fff;padding:5px 8px;border-radius:6px;font-size:0.85rem}
 /* Mission entry neutral (used for batteries replacement) */
-.mission-entry{background:#f9f9f9;padding:12px;border-radius:8px;display:flex;gap:12px;align-items:flex-start}
+.mission-entry{background:#f8f9fb;padding:12px;border-radius:8px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:3px solid #3f3d56}
 .mission-entry .sw-body{flex:1;text-align:left}
 .mission-entry .sw-title{font-weight:700;color:#3f3d56;margin-bottom:6px}
 @keyframes fadeIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
