@@ -34,6 +34,15 @@ section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-ra
 /* ===== BTN ===== */
 .btn{display:inline-block;padding:12px 25px;margin:10px;background:#3f3d56;color:#fff;border-radius:8px;transition:.3s}
 .btn:hover{background:#5a58a3}
+.btn.active{background:#ffd369;color:#3f3d56}
+
+/* ===== FILTRES ===== */
+.filter-bar{text-align:center;margin:20px 0;padding:20px;background:#fff;border-radius:15px;box-shadow:0 4px 16px rgba(0,0,0,.08);max-width:1000px;margin:20px auto}
+.filter-bar h3{margin-bottom:15px;color:#3f3d56}
+.filter-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.filter-btn{padding:10px 15px;background:#f8f9fb;color:#3f3d56;border:1px solid #eee;border-radius:8px;cursor:pointer;transition:.3s;font-weight:600}
+.filter-btn:hover{background:#ffd369}
+.filter-btn.active{background:#3f3d56;color:#fff}
 
 /* ===== CONTACT ===== */
 footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:40px}
@@ -94,14 +103,29 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
     <a href="#stage1">1ère année</a>
     <a href="#stage2">2ème année</a>
     <a href="#perso">Projets</a>
+    <a href="#cours">Cours</a>
   </nav>
 </header>
+
+<!-- BARRE DE FILTRES -->
+<div class="filter-bar">
+  <h3>🔍 Filtrer par compétence BTS SIO</h3>
+  <div class="filter-buttons">
+    <button class="filter-btn active" data-filter="all">TOUT</button>
+    <button class="filter-btn" data-filter="m1">Gérer le patrimoine informatique</button>
+    <button class="filter-btn" data-filter="m2">Répondre aux incidents</button>
+    <button class="filter-btn" data-filter="m3">Développer la présence en ligne</button>
+    <button class="filter-btn" data-filter="m4">Travailler en mode projet</button>
+    <button class="filter-btn" data-filter="m5">Mettre à disposition des services</button>
+    <button class="filter-btn" data-filter="m6">Organiser son développement pro</button>
+  </div>
+</div>
 
 <main>
   <section id="stage1" class="scroll-animate">
     <h2>🎓 Première année de stage</h2>
     <div class="certifications-container">
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m1 m5">
         <h3>Création d'un NAS</h3>
         <p>Mise en place d'un NAS maison (RAID, Docker, Nextcloud, Jellyfin) pour centraliser les sauvegardes et partager des fichiers.</p>
         <div id="more-1" class="more" style="display:none;">
@@ -111,7 +135,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn" onclick="openCarouselModal()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m1">
         <h3>Gestion d'un scareware</h3>
         <p>Analyse et désinfection d'un poste affecté par un scareware, nettoyage complet et sécurisation.</p>
         <div id="more-2" class="more" style="display:none;">
@@ -121,7 +145,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn" onclick="openCarouselModalScareware()" style="padding:6px 10px;font-size:0.9rem">📸 Voir la photo</button>
       </div>
 
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m1">
         <h3>Remplacement de batteries d'onduleur</h3>
         <p>Diagnostic et remplacement des batteries d'un onduleur, tests de fonctionnement après intervention.</p>
         <div id="more-3" class="more" style="display:none;">
@@ -131,7 +155,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn" onclick="openCarouselModalBatteries()" style="padding:6px 10px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m2">
         <h3>Mise à neuf de PC</h3>
         <p>Réinstallation complète de systèmes, optimisation des performances et mise à jour des pilotes.</p>
         <div id="more-4" class="more" style="display:none;">
@@ -141,7 +165,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn" onclick="openCarouselModalPC()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m2">
         <h3>Changement de pâte thermique</h3>
         <p>Nettoyage et application de pâte thermique de haute qualité sur processeurs pour améliorer le refroidissement.</p>
         <div id="more-5" class="more" style="display:none;">
@@ -151,7 +175,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn" onclick="openCarouselModalPaste()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m2">
         <h3>Intervention réseau - Kiko</h3>
         <p>Analyse et résolution des problèmes de connectivité pour une boutique Kiko (câblage, commutateur, Wi-Fi).</p>
         <div id="more-6" class="more" style="display:none;">
@@ -161,7 +185,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn" onclick="openCarouselModalKiko()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m6">
         <h3>Veille technologique & identité numérique</h3>
         <p>Mise en place d’une veille technique et gestion de la présence en ligne.</p>
         <div id="more-7" class="more" style="display:none;">
@@ -170,7 +194,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn toggle-details" data-target="more-7">Voir plus</button>
       </div>
 
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m3 m6">
         <h3>Optimisation du profil LinkedIn</h3>
         <p>Travail sur l’image professionnelle et visibilité pour les recruteurs.</p>
         <div id="more-8" class="more" style="display:none;">
@@ -189,7 +213,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   <section id="perso" class="scroll-animate">
     <h2>💡 Projets personnels</h2>
     <div class="certifications-container">
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m3">
         <h3>Site portfolio</h3>
         <p>Création de ce site web responsive pour présenter mon parcours, mes compétences et mes missions.</p>
         <div id="more-10" class="more" style="display:none;">
@@ -198,7 +222,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn toggle-details" data-target="more-10">Voir plus</button>
       </div>
 
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m1">
         <h3>Automatisation de sauvegarde</h3>
         <p>Script de sauvegarde automatique pour dossiers importants (Windows / Linux).</p>
         <div id="more-11" class="more" style="display:none;">
@@ -207,13 +231,50 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn toggle-details" data-target="more-11">Voir plus</button>
       </div>
 
-      <div class="certif-card">
+      <div class="certif-card" data-competences="m5">
         <h3>Mini-projet réseau</h3>
         <p>Maquette d'un réseau local avec segmentation VLAN et règles de pare-feu.</p>
         <div id="more-12" class="more" style="display:none;">
           <p>Documentation du plan d'adressage, des VLANs et des configurations de commutateur.</p>
         </div>
         <button class="btn toggle-details" data-target="more-12">Voir plus</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="cours" class="scroll-animate">
+    <h2>📚 Projets cours</h2>
+    <div class="certifications-container">
+      <div class="certif-card" data-competences="m1 m4 m5">
+        <h3>Projet Proxmox — Infrastructure virtualisée complète</h3>
+        <p>Déploiement complet d'une infrastructure virtualisée sous Proxmox avec routage, NAT et firewall MikroTik. Configuration des interfaces, plan d'adressage, services réseau (DNS, Apache), et documentation technique. Structuration du projet, validation des étapes, et mise en place d'un serveur Apache en DMZ.</p>
+        <div id="more-13" class="more" style="display:none;">
+          <p>Installation et configuration de Proxmox, mise en place du routage avec MikroTik, sécurisation via firewall, déploiement de services réseau essentiels. Organisation méthodique du projet, rédaction de la documentation technique, vérification de la conformité et préparation pour présentation. Déploiement du serveur web en zone démilitarisée, configuration du firewall pour sécuriser l'accès, tests de fonctionnalité et preuve de bon fonctionnement.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-13">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalProxmox()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir le schéma</button>
+        <a href="images/Projet Proxmox/Documentation_Projet_Proxmox2.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;margin-left:8px;text-decoration:none">📄 Documentation</a>
+      </div>
+
+      <div class="certif-card" data-competences="m1 m5">
+        <h3>TP NAT sortant — Routage avec MikroTik</h3>
+        <p>Mise en place d'un routage NAT sortant avec MikroTik pour permettre l'accès internet aux machines du réseau local.</p>
+        <div id="more-14" class="more" style="display:none;">
+          <p>Configuration des règles NAT, test de connectivité, documentation des étapes et validation du fonctionnement.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-14">Voir plus</button>
+        <a href="images/TPs/Description_NAT.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;text-decoration:none">📋 Voir l'objectif</a>
+        <a href="images/TPs/Compte_rendu_NAT.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;margin-left:8px;text-decoration:none">📄 Voir le compte rendu</a>
+      </div>
+
+      <div class="certif-card" data-competences="m4">
+        <h3>Participation à un hackathon</h3>
+        <p>Participation à un hackathon avec proposition d'une solution technique pour Renault.</p>
+        <div id="more-15" class="more" style="display:none;">
+          <p>Travail en équipe pour développer une idée innovante, présentation de la solution et échanges avec les professionnels.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-15">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalHackathon()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir la photo</button>
       </div>
     </div>
   </section>
@@ -345,6 +406,42 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL PROJET PROXMOX -->
+<div id="carouselModalProxmox" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalProxmox()">✕</button>
+    <h3 style="margin-bottom:20px">📊 Schéma Réseau - Projet Proxmox</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselProxmox(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackProxmox">
+          <div class="carousel-slide"><img src="images/Projet Proxmox/image.png" alt="Schéma Proxmox"><div class="carousel-caption">Infrastructure virtualisée avec Proxmox, MikroTik, services réseau et Apache en DMZ</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselProxmox(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsProxmox"></div>
+  </div>
+</div>
+
+<!-- MODALE CARROUSEL HACKATHON -->
+<div id="carouselModalHackathon" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalHackathon()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Hackathon</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselHackathon(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackHackathon">
+          <div class="carousel-slide"><img src="images/hack.jpg" alt="Hackathon"><div class="carousel-caption">Participation à un hackathon - Solution technique pour Renault</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselHackathon(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsHackathon"></div>
+  </div>
+</div>
+
 <script>
 // Toggle "Voir plus" des cartes
 document.querySelectorAll('.toggle-details').forEach(btn => {
@@ -354,6 +451,32 @@ document.querySelectorAll('.toggle-details').forEach(btn => {
     const isVisible = target.style.display === 'block';
     target.style.display = isVisible ? 'none' : 'block';
     btn.textContent = isVisible ? 'Voir plus' : 'Voir moins';
+  });
+});
+
+// Filtrage des réalisations
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Retirer la classe active de tous les boutons
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    // Ajouter la classe active au bouton cliqué
+    btn.classList.add('active');
+    
+    const filter = btn.dataset.filter;
+    const cards = document.querySelectorAll('.certif-card');
+    
+    cards.forEach(card => {
+      if (filter === 'all') {
+        card.style.display = 'block';
+      } else {
+        const competences = card.dataset.competences ? card.dataset.competences.split(' ') : [];
+        if (competences.includes(filter)) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      }
+    });
   });
 });
 
@@ -370,6 +493,10 @@ let currentSlideScareware = 0;
 const totalSlidesScareware = 1;
 let currentSlideBatteries = 0;
 const totalSlidesBatteries = 4;
+let currentSlideProxmox = 0;
+const totalSlidesProxmox = 1;
+let currentSlideHackathon = 0;
+const totalSlidesHackathon = 1;
 
 function openCarouselModal() {
   currentSlide = 0;
@@ -635,6 +762,94 @@ function updateCarouselBatteries() {
   });
 }
 
+// --- Proxmox carousel functions ---
+function openCarouselModalProxmox() {
+  currentSlideProxmox = 0;
+  document.getElementById('carouselModalProxmox').style.display = "flex";
+  initCarouselProxmox();
+}
+
+function closeCarouselModalProxmox() {
+  document.getElementById('carouselModalProxmox').style.display = "none";
+}
+
+function initCarouselProxmox() {
+  const dotsContainer = document.getElementById('carouselDotsProxmox');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesProxmox; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideProxmox(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselProxmox();
+}
+
+function moveCarouselProxmox(direction) {
+  currentSlideProxmox += direction;
+  if(currentSlideProxmox < 0) currentSlideProxmox = totalSlidesProxmox - 1;
+  if(currentSlideProxmox >= totalSlidesProxmox) currentSlideProxmox = 0;
+  updateCarouselProxmox();
+}
+
+function goToSlideProxmox(index) {
+  currentSlideProxmox = index;
+  updateCarouselProxmox();
+}
+
+function updateCarouselProxmox() {
+  const track = document.getElementById('carouselTrackProxmox');
+  if(track) track.style.transform = `translateX(-${currentSlideProxmox * 100}%)`;
+  document.querySelectorAll('#carouselModalProxmox .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideProxmox);
+  });
+}
+
+// --- Hackathon carousel functions ---
+function openCarouselModalHackathon() {
+  currentSlideHackathon = 0;
+  document.getElementById('carouselModalHackathon').style.display = "flex";
+  initCarouselHackathon();
+}
+
+function closeCarouselModalHackathon() {
+  document.getElementById('carouselModalHackathon').style.display = "none";
+}
+
+function initCarouselHackathon() {
+  const dotsContainer = document.getElementById('carouselDotsHackathon');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesHackathon; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideHackathon(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselHackathon();
+}
+
+function moveCarouselHackathon(direction) {
+  currentSlideHackathon += direction;
+  if(currentSlideHackathon < 0) currentSlideHackathon = totalSlidesHackathon - 1;
+  if(currentSlideHackathon >= totalSlidesHackathon) currentSlideHackathon = 0;
+  updateCarouselHackathon();
+}
+
+function goToSlideHackathon(index) {
+  currentSlideHackathon = index;
+  updateCarouselHackathon();
+}
+
+function updateCarouselHackathon() {
+  const track = document.getElementById('carouselTrackHackathon');
+  if(track) track.style.transform = `translateX(-${currentSlideHackathon * 100}%)`;
+  document.querySelectorAll('#carouselModalHackathon .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideHackathon);
+  });
+}
+
 // Fermer la modale carrousel au clic sur le fond
 document.getElementById('carouselModal').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModal') closeCarouselModal();
@@ -658,6 +873,14 @@ document.getElementById('carouselModalScareware')?.addEventListener('click', (e)
 
 document.getElementById('carouselModalBatteries')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalBatteries') closeCarouselModalBatteries();
+});
+
+document.getElementById('carouselModalProxmox')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalProxmox') closeCarouselModalProxmox();
+});
+
+document.getElementById('carouselModalHackathon')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalHackathon') closeCarouselModalHackathon();
 });
 
 // IntersectionObserver pour animation au scroll
