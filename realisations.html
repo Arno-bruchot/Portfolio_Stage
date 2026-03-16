@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Réalisations - Portfolio Arno BRUCHOT</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<style>
+/* ===== GLOBAL ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#f0f2f5;color:#333;line-height:1.6}
+a{text-decoration:none;color:inherit}
+h1,h2,h3{font-weight:700;text-align:center;color:#3f3d56}
+h1{font-size:2.5rem;margin-bottom:15px}
+h2{font-size:2rem;margin:40px 0 20px}
+p{text-align:center;margin-bottom:15px;font-size:1.1rem}
+ul{text-align:center}
+
+/* ===== HEADER ===== */
+header{background:#3f3d56;color:#fff;padding:12px 20px;text-align:center;position:sticky;top:0;z-index:1000}
+header nav a{margin:0 15px;font-weight:600;color:#fff;transition:.3s}
+header nav a:hover{color:#ffd369}
+
+/* ===== SECTIONS ===== */
+section{max-width:1000px;margin:50px auto;padding:30px;background:#fff;border-radius:15px;box-shadow:0 4px 16px rgba(0,0,0,.08);scroll-margin-top:120px}
+  .certifications-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:20px}
+  .certif-card{background:#f8f9fb;padding:20px;border-radius:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);border:1px solid #eee}
+  .certif-card h3{margin-bottom:12px;color:#3f3d56}
+  .certif-card p{margin-bottom:12px;text-align:left;color:#555}
+  .certif-card .more{margin-top:10px;text-align:left;color:#555}
+
+/* ===== BTN ===== */
+.btn{display:inline-block;padding:12px 25px;margin:10px;background:#3f3d56;color:#fff;border-radius:8px;transition:.3s}
+.btn:hover{background:#5a58a3}
+
+/* ===== CONTACT ===== */
+footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:40px}
+
+/* ===== ANIMATIONS AU SCROLL ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div style="font-family:'Poppins',sans-serif;font-size:1.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00bfae;margin-bottom:4px;">
+    ARNO Bruchot
+  </div>
+  <nav>
+    <a href="index.html">Accueil</a>
+    <a href="#stage1">1ère année</a>
+    <a href="#stage2">2ème année</a>
+    <a href="#perso">Projets</a>
+  </nav>
+</header>
+
+<main>
+  <section id="stage1" class="scroll-animate">
+    <h2>🎓 Première année de stage</h2>
+    <div class="certifications-container">
+      <div class="certif-card">
+        <h3>Création d'un NAS</h3>
+        <p>Mise en place d'un NAS maison (RAID, Docker, Nextcloud, Jellyfin) pour centraliser les sauvegardes et partager des fichiers.</p>
+        <div id="more-1" class="more" style="display:none;">
+          <p>Configuration de l'environnement, sécurisation des accès, création des conteneurs et mise en place du suivi via un tableau de bord.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-1">Voir plus</button>
+      </div>
+
+      <div class="certif-card">
+        <h3>Gestion d'un scareware</h3>
+        <p>Analyse et désinfection d'un poste affecté par un scareware, nettoyage complet et sécurisation.</p>
+        <div id="more-2" class="more" style="display:none;">
+          <p>Utilisation d'outils professionnels (Malwarebytes, AdwCleaner, RogueKiller) et vérification des services Windows.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-2">Voir plus</button>
+      </div>
+
+      <div class="certif-card">
+        <h3>Remplacement de batteries d'onduleur</h3>
+        <p>Diagnostic et remplacement des batteries d'un onduleur, tests de fonctionnement après intervention.</p>
+        <div id="more-3" class="more" style="display:none;">
+          <p>Travail en respectant les consignes de sécurité électrique et vérification de la continuité d'alimentation.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-3">Voir plus</button>
+      </div>
+
+      <div class="certif-card">
+        <h3>Mise à neuf de PC</h3>
+        <p>Réinstallation complète de systèmes, optimisation des performances et mise à jour des pilotes.</p>
+        <div id="more-4" class="more" style="display:none;">
+          <p>Création d'images, sauvegarde des données et restauration après migration pour un redémarrage propre.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-4">Voir plus</button>
+      </div>
+
+      <div class="certif-card">
+        <h3>Changement de pâte thermique</h3>
+        <p>Nettoyage et application de pâte thermique de haute qualité sur processeurs pour améliorer le refroidissement.</p>
+        <div id="more-5" class="more" style="display:none;">
+          <p>Vérification des températures avant et après, pour garantir une meilleure dissipation thermique.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-5">Voir plus</button>
+      </div>
+
+      <div class="certif-card">
+        <h3>Intervention réseau - Kiko</h3>
+        <p>Analyse et résolution des problèmes de connectivité pour une boutique Kiko (câblage, commutateur, Wi-Fi).</p>
+        <div id="more-6" class="more" style="display:none;">
+          <p>Diagnostic des équipements, mise en place d'un plan d'adressage et vérification de l'accès internet.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-6">Voir plus</button>
+      </div>
+
+      <div class="certif-card">
+        <h3>Veille technologique & identité numérique</h3>
+        <p>Mise en place d’une veille technique et gestion de la présence en ligne.</p>
+        <div id="more-7" class="more" style="display:none;">
+          <p>Suivi des nouvelles technologies, amélioration continue du profil LinkedIn et gestion du portfolio en ligne.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-7">Voir plus</button>
+      </div>
+
+      <div class="certif-card">
+        <h3>Optimisation du profil LinkedIn</h3>
+        <p>Travail sur l’image professionnelle et visibilité pour les recruteurs.</p>
+        <div id="more-8" class="more" style="display:none;">
+          <p>Création de contenu, mise à jour des compétences et des expériences, et amélioration de l'engagement.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-8">Voir plus</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="stage2" class="scroll-animate">
+    <h2>🏢 Deuxième année de stage</h2>
+    <p>Cette section sera complétée prochainement avec des réalisations spécifiques à ma deuxième année de stage.</p>
+  </section>
+
+  <section id="perso" class="scroll-animate">
+    <h2>💡 Projets personnels</h2>
+    <div class="certifications-container">
+      <div class="certif-card">
+        <h3>Site portfolio</h3>
+        <p>Création de ce site web responsive pour présenter mon parcours, mes compétences et mes missions.</p>
+        <div id="more-10" class="more" style="display:none;">
+          <p>Utilisation de HTML/CSS/JS purs, optimisation mobile et animations d'apparition au scroll.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-10">Voir plus</button>
+      </div>
+
+      <div class="certif-card">
+        <h3>Automatisation de sauvegarde</h3>
+        <p>Script de sauvegarde automatique pour dossiers importants (Windows / Linux).</p>
+        <div id="more-11" class="more" style="display:none;">
+          <p>Utilisation de PowerShell et Bash, planification via tâches programmées / cron et vérification des logs.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-11">Voir plus</button>
+      </div>
+
+      <div class="certif-card">
+        <h3>Mini-projet réseau</h3>
+        <p>Maquette d'un réseau local avec segmentation VLAN et règles de pare-feu.</p>
+        <div id="more-12" class="more" style="display:none;">
+          <p>Documentation du plan d'adressage, des VLANs et des configurations de commutateur.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-12">Voir plus</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Portfolio BTS SIO - Arno BRUCHOT - Tous droits réservés</p>
+</footer>
+
+<script>
+// Toggle "Voir plus" des cartes
+document.querySelectorAll('.toggle-details').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = document.getElementById(btn.dataset.target);
+    if (!target) return;
+    const isVisible = target.style.display === 'block';
+    target.style.display = isVisible ? 'none' : 'block';
+    btn.textContent = isVisible ? 'Voir plus' : 'Voir moins';
+  });
+});
+
+// IntersectionObserver pour animation au scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.scroll-animate').forEach(element => {
+  observer.observe(element);
+});
+</script>
+
+</body>
+</html>
