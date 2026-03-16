@@ -61,6 +61,26 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   transform: translateY(0);
   animation: fadeInUp 0.8s ease-out forwards;
 }
+
+/* ===== MODALE CARROUSEL ===== */
+.carousel-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);justify-content:center;align-items:center;z-index:3000}
+.carousel-modal-content{background:#fff;padding:20px;border-radius:12px;max-width:700px;width:90%;position:relative;animation:fadeIn .4s ease}
+.carousel-modal-close{position:absolute;top:15px;right:20px;font-size:28px;cursor:pointer;color:#333;background:none;border:none}
+
+/* ===== CARROUSEL ===== */
+.carousel-container{position:relative;max-width:100%;margin:20px 0;display:flex;align-items:center;justify-content:center}
+.carousel-wrapper{position:relative;width:100%;max-width:500px;overflow:hidden;border-radius:12px}
+.carousel-track{display:flex;transition:transform .5s ease;width:100%}
+.carousel-slide{min-width:100%;display:flex;flex-direction:column;align-items:center}
+.carousel-slide img{max-width:100%;height:auto;border-radius:8px}
+.carousel-caption{margin-top:8px;font-size:0.9rem;color:#555}
+.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);background:#3f3d56;color:#fff;border:none;padding:15px 12px;cursor:pointer;font-size:1.5rem;border-radius:4px;transition:.3s;z-index:10}
+.carousel-nav:hover{background:#5a58a3}
+.carousel-nav.prev{left:10px}
+.carousel-nav.next{right:10px}
+.carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:#ccc;cursor:pointer;transition:.3s}
+.carousel-dot.active{background:#3f3d56}
 </style>
 </head>
 <body>
@@ -88,6 +108,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           <p>Configuration de l'environnement, sécurisation des accès, création des conteneurs et mise en place du suivi via un tableau de bord.</p>
         </div>
         <button class="btn toggle-details" data-target="more-1">Voir plus</button>
+        <button class="btn" onclick="openCarouselModal()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
       <div class="certif-card">
@@ -97,6 +118,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           <p>Utilisation d'outils professionnels (Malwarebytes, AdwCleaner, RogueKiller) et vérification des services Windows.</p>
         </div>
         <button class="btn toggle-details" data-target="more-2">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalScareware()" style="padding:6px 10px;font-size:0.9rem">📸 Voir la photo</button>
       </div>
 
       <div class="certif-card">
@@ -106,6 +128,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           <p>Travail en respectant les consignes de sécurité électrique et vérification de la continuité d'alimentation.</p>
         </div>
         <button class="btn toggle-details" data-target="more-3">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalBatteries()" style="padding:6px 10px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
       <div class="certif-card">
@@ -115,6 +138,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           <p>Création d'images, sauvegarde des données et restauration après migration pour un redémarrage propre.</p>
         </div>
         <button class="btn toggle-details" data-target="more-4">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalPC()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
       <div class="certif-card">
@@ -124,6 +148,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           <p>Vérification des températures avant et après, pour garantir une meilleure dissipation thermique.</p>
         </div>
         <button class="btn toggle-details" data-target="more-5">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalPaste()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
       <div class="certif-card">
@@ -133,6 +158,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
           <p>Diagnostic des équipements, mise en place d'un plan d'adressage et vérification de l'accès internet.</p>
         </div>
         <button class="btn toggle-details" data-target="more-6">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalKiko()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
       <div class="certif-card">
@@ -197,6 +223,128 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   <p>© 2025 Portfolio BTS SIO - Arno BRUCHOT - Tous droits réservés</p>
 </footer>
 
+<!-- MODALE CARROUSEL NAS -->
+<div id="carouselModal" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModal()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Création du NAS</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarousel(-1)">❮</button>
+      <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+              <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0549.jpg" alt="NAS 1"><div class="carousel-caption">Photo 1/6 — Création du NAS - Exposition des idées pour la configuration (étape 1)</div></div>
+              <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0578.jpg" alt="NAS 2"><div class="carousel-caption">Photo 2/6 — Démontage de la coque de protection du NAS</div></div>
+              <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0580.jpg" alt="NAS 3"><div class="carousel-caption">Photo 3/6 — Montage des deux disques SSD de 500GB chacuns</div></div>
+              <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0581.jpg" alt="NAS 4"><div class="carousel-caption">Photo 4/6 — Installation des barettes de RAM</div></div>
+              <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0582.jpg" alt="NAS 5"><div class="carousel-caption">Photo 5/6 — Installation des 2 disques de 4To chacuns</div></div>
+              <div class="carousel-slide"><img src="images/Creation_NAS/IMG_0585.jpg" alt="NAS 6"><div class="carousel-caption">Photo 6/6 — Remontage de la coque de protaction, mise en route, installation des services demandés par le client.</div></div>
+            </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarousel(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
+</div>
+
+<!-- MODALE CARROUSEL BATTERIES ONDULEUR -->
+<div id="carouselModalBatteries" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalBatteries()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Changement Batteries Onduleur</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselBatteries(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackBatteries">
+          <div class="carousel-slide"><img src="images/Batteries onduleur/unnamed.jpg" alt="Onduleur - écran BAT"><div class="carousel-caption">1/4 — Onduleur de face, message 'BAT' indiquant batterie HS</div></div>
+          <div class="carousel-slide"><img src="images/Batteries onduleur/IMG_0655.jpg" alt="Onduleur ouvert - anciennes batteries"><div class="carousel-caption">2/4 — Onduleur ouvert avec les anciennes batteries noires</div></div>
+          <div class="carousel-slide"><img src="images/Batteries onduleur/IMG_0656.jpg" alt="Batteries blanches à côté"><div class="carousel-caption">3/4 — Nouvelles batteries blanches posées à côté avant installation</div></div>
+          <div class="carousel-slide"><img src="images/Batteries onduleur/IMG_0657.jpg" alt="Onduleur refermé"><div class="carousel-caption">4/4 — Onduleur refermé, vue d'ensemble après remplacement</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselBatteries(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsBatteries"></div>
+  </div>
+</div>
+
+<!-- MODALE CARROUSEL MISE A NEUF PC -->
+<div id="carouselModalPC" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalPC()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Mise à neuf d'un PC</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselPC(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackPC">
+          <div class="carousel-slide"><img src="images/Mise_a_neuf/IMG_0686.jpg" alt="PC 1"><div class="carousel-caption">Photo 1/3 — Diagnostic, nettoyage, ajout de RAM et remplacement de l'ancien HDD par un SSD</div></div>
+          <div class="carousel-slide"><img src="images/Mise_a_neuf/IMG_0690.jpg" alt="PC 2"><div class="carousel-caption">Photo 2/3 — Installation de Windows 11</div></div>
+          <div class="carousel-slide"><img src="images/Mise_a_neuf/IMG_0691.jpg" alt="PC 3"><div class="carousel-caption">Photo 3/3 — Configuration, mises à jour, tests finaux et réalisation de la fiche de vente</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselPC(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsPC"></div>
+  </div>
+</div>
+
+<!-- MODALE CARROUSEL CHANGEMENT PATE THERMIQUE -->
+<div id="carouselModalPaste" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalPaste()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Changement des pâtes thermique</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselPaste(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackPaste">
+          <div class="carousel-slide"><img src="images/changement pate thermique/IMG_0363.jpg" alt="Pate 1"><div class="carousel-caption">Photo 1/2 — Démontage pour changement de pâte thermique</div></div>
+          <div class="carousel-slide"><img src="images/changement pate thermique/IMG_0364.jpg" alt="Pate 2"><div class="carousel-caption">Photo 2/2 — Nettoyage de l'ancienne pâte et application de la nouvelle pâte et remontage</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselPaste(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsPaste"></div>
+  </div>
+</div>
+
+<!-- MODALE CARROUSEL INTERVENTION KIKO -->
+<div id="carouselModalKiko" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalKiko()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Intervention réseau chez Kiko</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselKiko(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackKiko">
+          <div class="carousel-slide"><img src="images/Kiko/unnamed.jpg" alt="Kiko 1"><div class="carousel-caption">Photo 1/4 — État initial (écran non fonctionnel)</div></div>
+          <div class="carousel-slide"><img src="images/Kiko/IMG_0496.jpg" alt="Kiko 2"><div class="carousel-caption">Photo 2/4 — Écran noir / diagnostic des problèmes</div></div>
+          <div class="carousel-slide"><img src="images/Kiko/IMG_0498.jpg" alt="Kiko 3"><div class="carousel-caption">Photo 3/4 — Câblage et vérification de la fibre</div></div>
+          <div class="carousel-slide"><img src="images/Kiko/IMG_0499.jpg" alt="Kiko 4"><div class="carousel-caption">Photo 4/4 — Écran en état de fonctionnement</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselKiko(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsKiko"></div>
+  </div>
+</div>
+
+<!-- MODALE CARROUSEL SCAREWARE -->
+<div id="carouselModalScareware" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalScareware()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Gestion Scareware</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselScareware(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackScareware">
+          <div class="carousel-slide"><img src="images/scareware/unnamed.jpg" alt="Scareware"><div class="carousel-caption">Capture — Désinfection réalisée (CCleaner, AdwCleaner, Malwarebytes, RogueKiller, ZHPCleaner, Kaspersky)</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselScareware(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsScareware"></div>
+  </div>
+</div>
+
 <script>
 // Toggle "Voir plus" des cartes
 document.querySelectorAll('.toggle-details').forEach(btn => {
@@ -207,6 +355,309 @@ document.querySelectorAll('.toggle-details').forEach(btn => {
     target.style.display = isVisible ? 'none' : 'block';
     btn.textContent = isVisible ? 'Voir plus' : 'Voir moins';
   });
+});
+
+// Gestion du carrousel
+let currentSlide = 0;
+const totalSlides = 6;
+let currentSlidePC = 0;
+const totalSlidesPC = 3;
+let currentSlidePaste = 0;
+const totalSlidesPaste = 2;
+let currentSlideKiko = 0;
+const totalSlidesKiko = 4;
+let currentSlideScareware = 0;
+const totalSlidesScareware = 1;
+let currentSlideBatteries = 0;
+const totalSlidesBatteries = 4;
+
+function openCarouselModal() {
+  currentSlide = 0;
+  document.getElementById('carouselModal').style.display="flex";
+  initCarousel();
+}
+
+function closeCarouselModal() {
+  document.getElementById('carouselModal').style.display="none";
+}
+
+function openCarouselModalPC() {
+  currentSlidePC = 0;
+  document.getElementById('carouselModalPC').style.display="flex";
+  initCarouselPC();
+}
+
+function closeCarouselModalPC() {
+  document.getElementById('carouselModalPC').style.display="none";
+}
+
+function openCarouselModalPaste() {
+  currentSlidePaste = 0;
+  document.getElementById('carouselModalPaste').style.display="flex";
+  initCarouselPaste();
+}
+
+function closeCarouselModalPaste() {
+  document.getElementById('carouselModalPaste').style.display="none";
+}
+
+function openCarouselModalKiko() {
+  currentSlideKiko = 0;
+  document.getElementById('carouselModalKiko').style.display="flex";
+  initCarouselKiko();
+}
+
+function closeCarouselModalKiko() {
+  document.getElementById('carouselModalKiko').style.display="none";
+}
+
+function initCarousel() {
+  const dotsContainer = document.getElementById('carouselDots');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarousel();
+}
+
+function initCarouselPC() {
+  const dotsContainer = document.getElementById('carouselDotsPC');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesPC; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      dot.addEventListener('click', () => goToSlidePC(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselPC();
+}
+
+function initCarouselPaste() {
+  const dotsContainer = document.getElementById('carouselDotsPaste');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesPaste; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      dot.addEventListener('click', () => goToSlidePaste(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselPaste();
+}
+
+function initCarouselKiko() {
+  const dotsContainer = document.getElementById('carouselDotsKiko');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesKiko; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      dot.addEventListener('click', () => goToSlideKiko(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselKiko();
+}
+
+function moveCarousel(direction) {
+  currentSlide += direction;
+  if(currentSlide < 0) currentSlide = totalSlides - 1;
+  if(currentSlide >= totalSlides) currentSlide = 0;
+  updateCarousel();
+}
+
+function moveCarouselPC(direction) {
+  currentSlidePC += direction;
+  if(currentSlidePC < 0) currentSlidePC = totalSlidesPC - 1;
+  if(currentSlidePC >= totalSlidesPC) currentSlidePC = 0;
+  updateCarouselPC();
+}
+
+function moveCarouselPaste(direction) {
+  currentSlidePaste += direction;
+  if(currentSlidePaste < 0) currentSlidePaste = totalSlidesPaste - 1;
+  if(currentSlidePaste >= totalSlidesPaste) currentSlidePaste = 0;
+  updateCarouselPaste();
+}
+
+function moveCarouselKiko(direction) {
+  currentSlideKiko += direction;
+  if(currentSlideKiko < 0) currentSlideKiko = totalSlidesKiko - 1;
+  if(currentSlideKiko >= totalSlidesKiko) currentSlideKiko = 0;
+  updateCarouselKiko();
+}
+
+function goToSlide(index) {
+  currentSlide = index;
+  updateCarousel();
+}
+
+function goToSlidePC(index) {
+  currentSlidePC = index;
+  updateCarouselPC();
+}
+
+function goToSlidePaste(index) {
+  currentSlidePaste = index;
+  updateCarouselPaste();
+}
+
+function goToSlideKiko(index) {
+  currentSlideKiko = index;
+  updateCarouselKiko();
+}
+
+function updateCarousel() {
+  const track = document.getElementById('carouselTrack');
+  track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  
+  document.querySelectorAll('#carouselModal .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlide);
+  });
+}
+
+function updateCarouselPC() {
+  const track = document.getElementById('carouselTrackPC');
+  track.style.transform = `translateX(-${currentSlidePC * 100}%)`;
+  
+  document.querySelectorAll('#carouselModalPC .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlidePC);
+  });
+}
+
+function updateCarouselPaste() {
+  const track = document.getElementById('carouselTrackPaste');
+  track.style.transform = `translateX(-${currentSlidePaste * 100}%)`;
+  
+  document.querySelectorAll('#carouselModalPaste .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlidePaste);
+  });
+}
+
+function updateCarouselKiko() {
+  const track = document.getElementById('carouselTrackKiko');
+  track.style.transform = `translateX(-${currentSlideKiko * 100}%)`;
+  
+  document.querySelectorAll('#carouselModalKiko .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideKiko);
+  });
+}
+
+// --- Scareware carousel functions ---
+function openCarouselModalScareware() {
+  currentSlideScareware = 0;
+  document.getElementById('carouselModalScareware').style.display = "flex";
+  initCarouselScareware();
+}
+
+function closeCarouselModalScareware() {
+  document.getElementById('carouselModalScareware').style.display = "none";
+}
+
+function initCarouselScareware() {
+  const dotsContainer = document.getElementById('carouselDotsScareware');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesScareware; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      dot.addEventListener('click', () => goToSlideScareware(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselScareware();
+}
+
+function moveCarouselScareware(direction) {
+  currentSlideScareware += direction;
+  if(currentSlideScareware < 0) currentSlideScareware = totalSlidesScareware - 1;
+  if(currentSlideScareware >= totalSlidesScareware) currentSlideScareware = 0;
+  updateCarouselScareware();
+}
+
+function goToSlideScareware(index) {
+  currentSlideScareware = index;
+  updateCarouselScareware();
+}
+
+function updateCarouselScareware() {
+  const track = document.getElementById('carouselTrackScareware');
+  if(track) track.style.transform = `translateX(-${currentSlideScareware * 100}%)`;
+  document.querySelectorAll('#carouselModalScareware .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideScareware);
+  });
+}
+
+// --- Batteries carousel functions ---
+function openCarouselModalBatteries() {
+  currentSlideBatteries = 0;
+  document.getElementById('carouselModalBatteries').style.display = "flex";
+  initCarouselBatteries();
+}
+
+function closeCarouselModalBatteries() {
+  document.getElementById('carouselModalBatteries').style.display = "none";
+}
+
+function initCarouselBatteries() {
+  const dotsContainer = document.getElementById('carouselDotsBatteries');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesBatteries; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      dot.addEventListener('click', () => goToSlideBatteries(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselBatteries();
+}
+
+function moveCarouselBatteries(direction) {
+  currentSlideBatteries += direction;
+  if(currentSlideBatteries < 0) currentSlideBatteries = totalSlidesBatteries - 1;
+  if(currentSlideBatteries >= totalSlidesBatteries) currentSlideBatteries = 0;
+  updateCarouselBatteries();
+}
+
+function goToSlideBatteries(index) {
+  currentSlideBatteries = index;
+  updateCarouselBatteries();
+}
+
+function updateCarouselBatteries() {
+  const track = document.getElementById('carouselTrackBatteries');
+  if(track) track.style.transform = `translateX(-${currentSlideBatteries * 100}%)`;
+  document.querySelectorAll('#carouselModalBatteries .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideBatteries);
+  });
+}
+
+// Fermer la modale carrousel au clic sur le fond
+document.getElementById('carouselModal').addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModal') closeCarouselModal();
+});
+
+document.getElementById('carouselModalPC').addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalPC') closeCarouselModalPC();
+});
+
+document.getElementById('carouselModalPaste').addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalPaste') closeCarouselModalPaste();
+});
+
+document.getElementById('carouselModalKiko').addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalKiko') closeCarouselModalKiko();
+});
+
+document.getElementById('carouselModalScareware')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalScareware') closeCarouselModalScareware();
+});
+
+document.getElementById('carouselModalBatteries')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalBatteries') closeCarouselModalBatteries();
 });
 
 // IntersectionObserver pour animation au scroll
