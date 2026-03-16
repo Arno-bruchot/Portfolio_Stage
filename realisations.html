@@ -190,7 +190,27 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 
   <section id="stage2" class="scroll-animate">
     <h2>🏢 Deuxième année de stage</h2>
-    <p>Cette section sera complétée prochainement avec des réalisations spécifiques à ma deuxième année de stage.</p>
+    <div class="certifications-container">
+      <div class="certif-card" data-competences="m1 m2">
+        <h3>Réparation avancée MacBook Pro</h3>
+        <p>Diagnostic et réparation complète d'un MacBook Pro : remplacement batterie et SSD, démontage complet.</p>
+        <div id="more-stage2-1" class="more" style="display:none;">
+          <p>Intervention sur un MacBook Pro 13" 2017 : diagnostic initial, démontage complet pour accéder aux composants internes, remplacement de la batterie défaillante et du SSD, remontage précis avec reconnexion des nappes, tests fonctionnels complets. Durée : 4h. Résultat : ordinateur pleinement fonctionnel.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-stage2-1">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalMac()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+      </div>
+
+      <div class="certif-card" data-competences="m5">
+        <h3>Remplacement et déploiement de téléphones professionnels</h3>
+        <p>Découverte du matériel sur site puis remplacement des anciens téléphones par les nouveaux modèles Yealink.</p>
+        <div id="more-stage2-2" class="more" style="display:none;">
+          <p>Installation d'un routeur Cisco 4G avec ses deux antennes secondaires, et passage du câble pour positionner l'antenne principale au plus près de l'extérieur afin d'optimiser la réception. Réalisation de tests de performance (speedtests) pour comparer la connexion fibre existante avec celle du routeur 4G nouvellement installé, et validation du bon fonctionnement de l'ensemble de l'infrastructure téléphonique et réseau.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-stage2-2">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalTelephone()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+      </div>
+    </div>
   </section>
 
   <section id="perso" class="scroll-animate">
@@ -442,6 +462,50 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL REPARATION MAC -->
+<div id="carouselModalMac" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalMac()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Réparation MacBook Pro, réparation du bouton d'allumage</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselMac(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackMac">
+          <div class="carousel-slide"><img src="images/Mac/IMG_0535.jpeg" alt="Diagnostic initial"><div class="carousel-caption">Le MacBook en panne a dû être complètement démonté car le bouton d'allumage est soudé à la coque, donc le donneur de composant à droite de la photo doit être vidé de sa carte mère, sa batterie, son ssd.</div></div>
+          <div class="carousel-slide"><img src="images/Mac/IMG_0538.jpeg" alt="Démontage"><div class="carousel-caption">Carte mère sortie pour l'échange entre les deux ordinateurs</div></div>
+          <div class="carousel-slide"><img src="images/Mac/IMG_0542.jpeg" alt="Remontage"><div class="carousel-caption">Reconnexion des nappes électroniques avec soin</div></div>
+          <div class="carousel-slide"><img src="images/Mac/IMG_0543.jpeg" alt="Remplacement"><div class="carousel-caption">Installation de la batterie neuve et installation du SSD</div></div>
+          <div class="carousel-slide"><img src="images/Mac/IMG_0544.jpeg" alt="Test final"><div class="carousel-caption">Tests de fonctionnement du bouton d'allumage et tests de toutes les touches du clavier</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselMac(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsMac"></div>
+  </div>
+</div>
+
+<!-- MODALE CARROUSEL TELEPHONE -->
+<div id="carouselModalTelephone" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalTelephone()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Remplacement et déploiement de téléphones professionnels</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselTelephone(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackTelephone">
+          <div class="carousel-slide"><img src="images/Telephone/IMG_0565.jpeg" alt="Carton"><div class="carousel-caption">Carton – Découverte du matériel sur place</div></div>
+          <div class="carousel-slide"><img src="images/Telephone/IMG_0567.jpeg" alt="Routeur Cisco"><div class="carousel-caption">Routeur Cisco – Découverte du matériel réseau</div></div>
+          <div class="carousel-slide"><img src="images/Telephone/IMG_0568.jpeg" alt="Installation routeur"><div class="carousel-caption">Installation du routeur 4G</div></div>
+          <div class="carousel-slide"><img src="images/Telephone/IMG_0572.jpeg" alt="Antenne"><div class="carousel-caption">Antenne positionnée au plus proche de l'extérieur</div></div>
+          <div class="carousel-slide"><img src="images/Telephone/IMG_0570.jpeg" alt="Téléphones installés"><div class="carousel-caption">Téléphones installés + tests</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselTelephone(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsTelephone"></div>
+  </div>
+</div>
+
 <script>
 // Toggle "Voir plus" des cartes
 document.querySelectorAll('.toggle-details').forEach(btn => {
@@ -497,6 +561,10 @@ let currentSlideProxmox = 0;
 const totalSlidesProxmox = 1;
 let currentSlideHackathon = 0;
 const totalSlidesHackathon = 1;
+let currentSlideMac = 0;
+const totalSlidesMac = 5;
+let currentSlideTelephone = 0;
+const totalSlidesTelephone = 5;
 
 function openCarouselModal() {
   currentSlide = 0;
@@ -850,6 +918,94 @@ function updateCarouselHackathon() {
   });
 }
 
+// --- Mac carousel functions ---
+function openCarouselModalMac() {
+  currentSlideMac = 0;
+  document.getElementById('carouselModalMac').style.display = "flex";
+  initCarouselMac();
+}
+
+function closeCarouselModalMac() {
+  document.getElementById('carouselModalMac').style.display = "none";
+}
+
+function initCarouselMac() {
+  const dotsContainer = document.getElementById('carouselDotsMac');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesMac; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideMac(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselMac();
+}
+
+function moveCarouselMac(direction) {
+  currentSlideMac += direction;
+  if(currentSlideMac < 0) currentSlideMac = totalSlidesMac - 1;
+  if(currentSlideMac >= totalSlidesMac) currentSlideMac = 0;
+  updateCarouselMac();
+}
+
+function goToSlideMac(index) {
+  currentSlideMac = index;
+  updateCarouselMac();
+}
+
+function updateCarouselMac() {
+  const track = document.getElementById('carouselTrackMac');
+  if(track) track.style.transform = `translateX(-${currentSlideMac * 100}%)`;
+  document.querySelectorAll('#carouselModalMac .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideMac);
+  });
+}
+
+// --- Telephone carousel functions ---
+function openCarouselModalTelephone() {
+  currentSlideTelephone = 0;
+  document.getElementById('carouselModalTelephone').style.display = "flex";
+  initCarouselTelephone();
+}
+
+function closeCarouselModalTelephone() {
+  document.getElementById('carouselModalTelephone').style.display = "none";
+}
+
+function initCarouselTelephone() {
+  const dotsContainer = document.getElementById('carouselDotsTelephone');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesTelephone; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideTelephone(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselTelephone();
+}
+
+function moveCarouselTelephone(direction) {
+  currentSlideTelephone += direction;
+  if(currentSlideTelephone < 0) currentSlideTelephone = totalSlidesTelephone - 1;
+  if(currentSlideTelephone >= totalSlidesTelephone) currentSlideTelephone = 0;
+  updateCarouselTelephone();
+}
+
+function goToSlideTelephone(index) {
+  currentSlideTelephone = index;
+  updateCarouselTelephone();
+}
+
+function updateCarouselTelephone() {
+  const track = document.getElementById('carouselTrackTelephone');
+  if(track) track.style.transform = `translateX(-${currentSlideTelephone * 100}%)`;
+  document.querySelectorAll('#carouselModalTelephone .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideTelephone);
+  });
+}
+
 // Fermer la modale carrousel au clic sur le fond
 document.getElementById('carouselModal').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModal') closeCarouselModal();
@@ -881,6 +1037,14 @@ document.getElementById('carouselModalProxmox')?.addEventListener('click', (e) =
 
 document.getElementById('carouselModalHackathon')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalHackathon') closeCarouselModalHackathon();
+});
+
+document.getElementById('carouselModalMac')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalMac') closeCarouselModalMac();
+});
+
+document.getElementById('carouselModalTelephone')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalTelephone') closeCarouselModalTelephone();
 });
 
 // IntersectionObserver pour animation au scroll
