@@ -210,6 +210,21 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn toggle-details" data-target="more-stage2-2">Voir plus</button>
         <button class="btn" onclick="openCarouselModalTelephone()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
+
+      <div class="certif-card" data-competences="m1 m2 m5">
+        <h3>Intervention client – remise à neuf et réinstallation</h3>
+        <p>Récupération et remise en état de matériel (écrans, PC tout-en-un, tours) avec effacement sécurisé des disques et réinstallation d'Ubuntu.</p>
+        <div id="more-stage2-wipe" class="more" style="display:none;">
+          <p>Suppression complète des partitions (Gestion des disques, EaseUS Partition Master), effacement sécurisé avec DiskWipe (zéros), puis réinstallation d'Ubuntu 24.04 via Ventoy après remontage des SSD et validation de l'installation (langue, Wi-Fi, mises à jour).</p>
+          <ul style="text-align:left; margin-top:10px;">
+            <li>🟦 Mise à disposition d'un service informatique</li>
+            <li>🟩 Réponse aux incidents et demandes d'assistance</li>
+            <li>🟧 Gestion du patrimoine informatique</li>
+          </ul>
+        </div>
+        <button class="btn toggle-details" data-target="more-stage2-wipe">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalWipe()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+      </div>
     </div>
   </section>
 
@@ -506,6 +521,29 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL WIRE AND WIPE -->
+<div id="carouselModalWipe" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalWipe()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Intervention cliente - effacement sécurisé & réinstallation</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselWipe(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackWipe">
+          <div class="carousel-slide"><img src="images/wipe/IMG_0618.jpeg" alt="Gestion des disques - partitions initiales"><div class="carousel-caption">1/6 — Gestion des disques : vue initiale avec toutes les partitions avant nettoyage</div></div>
+          <div class="carousel-slide"><img src="images/wipe/IMG_0624.jpeg" alt="Gestion des disques - disque non alloué"><div class="carousel-caption">2/6 — Disque entièrement non alloué après suppression des partitions</div></div>
+          <div class="carousel-slide"><img src="images/wipe/IMG_0628.jpeg" alt="DiskWipe effacement sécurisé"><div class="carousel-caption">3/6 — DiskWipe 1.5 en action pour écriture de zéros sur l'ensemble du disque</div></div>
+          <div class="carousel-slide"><img src="images/wipe/IMG_0632.jpeg" alt="Remontage SSD"><div class="carousel-caption">4/6 — Intérieur du PC tout-en-un, SSD remis en place après wipe</div></div>
+          <div class="carousel-slide"><img src="images/wipe/IMG_0635.jpeg" alt="Ventoy menu de boot"><div class="carousel-caption">5/6 — Menu de boot Ventoy utilisé pour lancer l'installation d'Ubuntu</div></div>
+          <div class="carousel-slide"><img src="images/wipe/IMG_0636.jpeg" alt="Installation Ubuntu"><div class="carousel-caption">6/6 — Installation d'Ubuntu : préparation du système avant configuration</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselWipe(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsWipe"></div>
+  </div>
+</div>
+
 <script>
 // Toggle "Voir plus" des cartes
 document.querySelectorAll('.toggle-details').forEach(btn => {
@@ -565,6 +603,8 @@ let currentSlideMac = 0;
 const totalSlidesMac = 5;
 let currentSlideTelephone = 0;
 const totalSlidesTelephone = 5;
+let currentSlideWipe = 0;
+const totalSlidesWipe = 6;
 
 function openCarouselModal() {
   currentSlide = 0;
@@ -1006,6 +1046,50 @@ function updateCarouselTelephone() {
   });
 }
 
+// --- Wipe carousel functions ---
+function openCarouselModalWipe() {
+  currentSlideWipe = 0;
+  document.getElementById('carouselModalWipe').style.display = "flex";
+  initCarouselWipe();
+}
+
+function closeCarouselModalWipe() {
+  document.getElementById('carouselModalWipe').style.display = "none";
+}
+
+function initCarouselWipe() {
+  const dotsContainer = document.getElementById('carouselDotsWipe');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesWipe; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideWipe(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselWipe();
+}
+
+function moveCarouselWipe(direction) {
+  currentSlideWipe += direction;
+  if(currentSlideWipe < 0) currentSlideWipe = totalSlidesWipe - 1;
+  if(currentSlideWipe >= totalSlidesWipe) currentSlideWipe = 0;
+  updateCarouselWipe();
+}
+
+function goToSlideWipe(index) {
+  currentSlideWipe = index;
+  updateCarouselWipe();
+}
+
+function updateCarouselWipe() {
+  const track = document.getElementById('carouselTrackWipe');
+  if(track) track.style.transform = `translateX(-${currentSlideWipe * 100}%)`;
+  document.querySelectorAll('#carouselModalWipe .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideWipe);
+  });
+}
+
 // Fermer la modale carrousel au clic sur le fond
 document.getElementById('carouselModal').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModal') closeCarouselModal();
@@ -1045,6 +1129,10 @@ document.getElementById('carouselModalMac')?.addEventListener('click', (e) => {
 
 document.getElementById('carouselModalTelephone')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalTelephone') closeCarouselModalTelephone();
+});
+
+document.getElementById('carouselModalWipe')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalWipe') closeCarouselModalWipe();
 });
 
 // IntersectionObserver pour animation au scroll
