@@ -225,6 +225,16 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn toggle-details" data-target="more-stage2-wipe">Voir plus</button>
         <button class="btn" onclick="openCarouselModalWipe()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
+
+      <div class="certif-card" data-competences="m2">
+        <h3>Remplacement de batterie d’un PC portable</h3>
+        <p>Démontage complet, remplacement de batterie, puis tests de charge et de démarrage pour valider le bon fonctionnement.</p>
+        <div id="more-stage2-battery" class="more" style="display:none;">
+          <p>Extraction de l'ancienne batterie défectueuse et installation d'une batterie neuve compatible, suivi d'un remontage intégral et de tests de charge/ mise sous tension.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-stage2-battery">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalBattery()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+      </div>
     </div>
   </section>
 
@@ -544,6 +554,27 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL BATTERIE PC PORTABLE -->
+<div id="carouselModalBattery" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalBattery()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Remplacement de batterie (PC portable)</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselBattery(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackBattery">
+          <div class="carousel-slide"><img src="images/Remplacement batterie/IMG_0642.jpeg" alt="Ancienne et nouvelle batterie"><div class="carousel-caption">1/4 — Ancienne batterie vs nouvelle batterie, préparation du remplacement</div></div>
+          <div class="carousel-slide"><img src="images/Remplacement batterie/IMG_0643.jpeg" alt="PC ouvert carte mère"><div class="carousel-caption">2/4 — PC ouvert, accès complet à la carte mère et aux composants</div></div>
+          <div class="carousel-slide"><img src="images/Remplacement batterie/IMG_0645.jpeg" alt="Batterie retirée"><div class="carousel-caption">3/4 — Batterie retirée, contrôle du composant défectueux</div></div>
+          <div class="carousel-slide"><img src="images/Remplacement batterie/IMG_0646.jpeg" alt="Connectique interne"><div class="carousel-caption">4/4 — Zoom sur la connectique interne et les branchements</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselBattery(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsBattery"></div>
+  </div>
+</div>
+
 <script>
 // Toggle "Voir plus" des cartes
 document.querySelectorAll('.toggle-details').forEach(btn => {
@@ -605,6 +636,8 @@ let currentSlideTelephone = 0;
 const totalSlidesTelephone = 5;
 let currentSlideWipe = 0;
 const totalSlidesWipe = 6;
+let currentSlideBattery = 0;
+const totalSlidesBattery = 4;
 
 function openCarouselModal() {
   currentSlide = 0;
@@ -1046,6 +1079,50 @@ function updateCarouselTelephone() {
   });
 }
 
+// --- Batterie PC portable carousel functions ---
+function openCarouselModalBattery() {
+  currentSlideBattery = 0;
+  document.getElementById('carouselModalBattery').style.display = "flex";
+  initCarouselBattery();
+}
+
+function closeCarouselModalBattery() {
+  document.getElementById('carouselModalBattery').style.display = "none";
+}
+
+function initCarouselBattery() {
+  const dotsContainer = document.getElementById('carouselDotsBattery');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesBattery; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideBattery(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselBattery();
+}
+
+function moveCarouselBattery(direction) {
+  currentSlideBattery += direction;
+  if(currentSlideBattery < 0) currentSlideBattery = totalSlidesBattery - 1;
+  if(currentSlideBattery >= totalSlidesBattery) currentSlideBattery = 0;
+  updateCarouselBattery();
+}
+
+function goToSlideBattery(index) {
+  currentSlideBattery = index;
+  updateCarouselBattery();
+}
+
+function updateCarouselBattery() {
+  const track = document.getElementById('carouselTrackBattery');
+  if(track) track.style.transform = `translateX(-${currentSlideBattery * 100}%)`;
+  document.querySelectorAll('#carouselModalBattery .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideBattery);
+  });
+}
+
 // --- Wipe carousel functions ---
 function openCarouselModalWipe() {
   currentSlideWipe = 0;
@@ -1133,6 +1210,10 @@ document.getElementById('carouselModalTelephone')?.addEventListener('click', (e)
 
 document.getElementById('carouselModalWipe')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalWipe') closeCarouselModalWipe();
+});
+
+document.getElementById('carouselModalBattery')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalBattery') closeCarouselModalBattery();
 });
 
 // IntersectionObserver pour animation au scroll
