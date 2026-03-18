@@ -246,6 +246,18 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn" onclick="openCarouselModal12PC()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
         <a href="images/12 pc/Documentation_environnement_securise.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;margin-left:8px;text-decoration:none">📄 Doc technique</a>
       </div>
+
+      <div class="certif-card" data-competences="m1 m4">
+        <h3>Installation imprimante Xerox VersaLink</h3>
+        <p>Déploiement d’une imprimante professionnelle : câblage, installation des toners, initialisation et configuration réseau + messagerie.</p>
+        <div id="more-stage2-xerox" class="more" style="display:none;">
+          <p>Déploiement d’une imprimante Xerox VersaLink sur site : branchement RJ45 et alimentation, installation des toners cyan/magenta/jaune/noir, saisie du code d’initialisation fourni par Xerox, redémarrage automatique et configuration de la langue.</p>
+          <p>Configuration avancée via l’application mobile : installation de Xerox Easy Assist, ajout de l’imprimante en scannant le QR code, connexion au réseau de l’entreprise et synchronisation complète. Réalisation des impressions de test pour valider le fonctionnement.</p>
+          <p>Configuration de la messagerie : tentative d’envoi depuis l’application (non reçu), accès à l’interface web via l’adresse IP, ajout d’une entrée carnet d’adresses pour envoi de documents scannés et paramétrage du serveur SMTP (authentification, StartTLS, port 587) en reprenant les paramètres de l’ancienne imprimante.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-stage2-xerox">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalXerox()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+      </div>
     </div>
   </section>
 
@@ -562,6 +574,28 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL XEROX VERSALINK -->
+<div id="carouselModalXerox" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalXerox()">✕</button>
+    <h3 style="margin-bottom:20px">📸 Installation imprimante Xerox VersaLink</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselXerox(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackXerox">
+          <div class="carousel-slide"><img src="images/imprimante xerox/IMG_0609.jpeg" alt="Déballage imprimante"><div class="carousel-caption">1/5 — Déballage chez Dépanordi, vérification de l’état du matériel</div></div>
+          <div class="carousel-slide"><img src="images/imprimante xerox/IMG_0611.jpeg" alt="Installation sur site"><div class="carousel-caption">2/5 — Mise en place sur site, branchement réseau et alimentation</div></div>
+          <div class="carousel-slide"><img src="images/imprimante xerox/IMG_0612.jpeg" alt="Ouverture coque"><div class="carousel-caption">3/5 — Ouverture de la coque pour accéder aux toners</div></div>
+          <div class="carousel-slide"><img src="images/imprimante xerox/IMG_0614.jpeg" alt="Installation toners"><div class="carousel-caption">4/5 — Installation des toners CMJN dans leurs logements</div></div>
+          <div class="carousel-slide"><img src="images/imprimante xerox/IMG_0617.jpeg" alt="Redémarrage et QR code"><div class="carousel-caption">5/5 — Écran tactile avec QR code et redémarrage après initialisation</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselXerox(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsXerox"></div>
+  </div>
+</div>
+
 <!-- MODALE CARROUSEL WIRE AND WIPE -->
 <div id="carouselModalWipe" class="carousel-modal">
   <div class="carousel-modal-content">
@@ -667,6 +701,8 @@ let currentSlideTelephone = 0;
 const totalSlidesTelephone = 5;
 let currentSlide12PC = 0;
 const totalSlides12PC = 3;
+let currentSlideXerox = 0;
+const totalSlidesXerox = 5;
 let currentSlideWipe = 0;
 const totalSlidesWipe = 6;
 let currentSlideBattery = 0;
@@ -1156,6 +1192,50 @@ function updateCarousel12PC() {
   });
 }
 
+// --- Xerox VersaLink carousel functions ---
+function openCarouselModalXerox() {
+  currentSlideXerox = 0;
+  document.getElementById('carouselModalXerox').style.display = "flex";
+  initCarouselXerox();
+}
+
+function closeCarouselModalXerox() {
+  document.getElementById('carouselModalXerox').style.display = "none";
+}
+
+function initCarouselXerox() {
+  const dotsContainer = document.getElementById('carouselDotsXerox');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesXerox; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlideXerox(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselXerox();
+}
+
+function moveCarouselXerox(direction) {
+  currentSlideXerox += direction;
+  if(currentSlideXerox < 0) currentSlideXerox = totalSlidesXerox - 1;
+  if(currentSlideXerox >= totalSlidesXerox) currentSlideXerox = 0;
+  updateCarouselXerox();
+}
+
+function goToSlideXerox(index) {
+  currentSlideXerox = index;
+  updateCarouselXerox();
+}
+
+function updateCarouselXerox() {
+  const track = document.getElementById('carouselTrackXerox');
+  if(track) track.style.transform = `translateX(-${currentSlideXerox * 100}%)`;
+  document.querySelectorAll('#carouselModalXerox .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideXerox);
+  });
+}
+
 // --- Batterie PC portable carousel functions ---
 function openCarouselModalBattery() {
   currentSlideBattery = 0;
@@ -1287,6 +1367,10 @@ document.getElementById('carouselModalTelephone')?.addEventListener('click', (e)
 
 document.getElementById('carouselModal12PC')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModal12PC') closeCarouselModal12PC();
+});
+
+document.getElementById('carouselModalXerox')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalXerox') closeCarouselModalXerox();
 });
 
 document.getElementById('carouselModalWipe')?.addEventListener('click', (e) => {
