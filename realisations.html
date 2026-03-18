@@ -235,6 +235,16 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn toggle-details" data-target="more-stage2-battery">Voir plus</button>
         <button class="btn" onclick="openCarouselModalBattery()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
+
+      <div class="certif-card" data-competences="m1 m2 m4 m5">
+        <h3>Configuration & sécurisation de 12 PC Windows</h3>
+        <p>Préparation, configuration automatisée de comptes et installation d'une solution de filtrage DNS avec Safe Exam Browser.</p>
+        <div id="more-stage2-12pc" class="more" style="display:none;">
+          <p>Création automatisée de comptes (admin + utilisateur), renommage des postes, suppression de l'utilisateur par défaut, et mise en place de SEB pour bloquer l'accès web hors sites autorisés (règles Allow/Block, regex, verrouillage du poste).</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-stage2-12pc">Voir plus</button>
+        <button class="btn" onclick="openCarouselModal12PC()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+      </div>
     </div>
   </section>
 
@@ -333,7 +343,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModal" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModal()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Création du NAS</h3>
+    <h3 style="margin-bottom:20px">Création du NAS</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarousel(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -356,7 +366,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModalBatteries" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalBatteries()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Changement Batteries Onduleur</h3>
+    <h3 style="margin-bottom:20px">Changement Batteries Onduleur</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselBatteries(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -377,7 +387,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModalPC" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalPC()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Mise à neuf d'un PC</h3>
+    <h3 style="margin-bottom:20px">Mise à neuf d'un PC</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselPC(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -397,7 +407,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModalPaste" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalPaste()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Changement des pâtes thermique</h3>
+    <h3 style="margin-bottom:20px">Changement des pâtes thermique</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselPaste(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -416,7 +426,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModalKiko" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalKiko()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Intervention réseau chez Kiko</h3>
+    <h3 style="margin-bottom:20px">Intervention réseau chez Kiko</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselKiko(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -455,7 +465,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModalProxmox" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalProxmox()">✕</button>
-    <h3 style="margin-bottom:20px">📊 Schéma Réseau - Projet Proxmox</h3>
+    <h3 style="margin-bottom:20px">Schéma Réseau - Projet Proxmox</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselProxmox(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -473,7 +483,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModalHackathon" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalHackathon()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Hackathon</h3>
+    <h3 style="margin-bottom:20px">Hackathon</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselHackathon(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -491,7 +501,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModalMac" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalMac()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Réparation MacBook Pro, réparation du bouton d'allumage</h3>
+    <h3 style="margin-bottom:20px">Réparation MacBook Pro, réparation du bouton d'allumage</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselMac(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -513,7 +523,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModalTelephone" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalTelephone()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Remplacement et déploiement de téléphones professionnels</h3>
+    <h3 style="margin-bottom:20px">Remplacement et déploiement de téléphones professionnels</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselTelephone(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -531,11 +541,31 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL 12 PC CONFIGURATION -->
+<div id="carouselModal12PC" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModal12PC()">✕</button>
+    <h3 style="margin-bottom:20px">Configuration et sécurisation de 12 PC Windows</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarousel12PC(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrack12PC">
+          <div class="carousel-slide"><img src="images/12 pc/IMG_0650.jpeg" alt="Préparation des postes"><div class="carousel-caption">1/3 — Préparation des postes, création de comptes et configuration initiale</div></div>
+          <div class="carousel-slide"><img src="images/12 pc/IMG_0653.jpeg" alt="Connexion aux services"><div class="carousel-caption">2/3 — Connexion aux services et vérification de la connectivité</div></div>
+          <div class="carousel-slide"><img src="images/12 pc/IMG_0658.jpeg" alt="Tests Linux blocage réseau"><div class="carousel-caption">3/3 — Tests sous Linux (blocage réseau) avant bascule vers la solution Windows</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarousel12PC(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDots12PC"></div>
+  </div>
+</div>
+
 <!-- MODALE CARROUSEL WIRE AND WIPE -->
 <div id="carouselModalWipe" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalWipe()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Intervention cliente - effacement sécurisé & réinstallation</h3>
+    <h3 style="margin-bottom:20px">Intervention cliente - effacement sécurisé & réinstallation</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselWipe(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -558,7 +588,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
 <div id="carouselModalBattery" class="carousel-modal">
   <div class="carousel-modal-content">
     <button class="carousel-modal-close" onclick="closeCarouselModalBattery()">✕</button>
-    <h3 style="margin-bottom:20px">📸 Remplacement de batterie (PC portable)</h3>
+    <h3 style="margin-bottom:20px">Remplacement de batterie (PC portable)</h3>
     <div class="carousel-container">
       <button class="carousel-nav prev" onclick="moveCarouselBattery(-1)">❮</button>
       <div class="carousel-wrapper">
@@ -634,6 +664,8 @@ let currentSlideMac = 0;
 const totalSlidesMac = 5;
 let currentSlideTelephone = 0;
 const totalSlidesTelephone = 5;
+let currentSlide12PC = 0;
+const totalSlides12PC = 3;
 let currentSlideWipe = 0;
 const totalSlidesWipe = 6;
 let currentSlideBattery = 0;
@@ -1079,6 +1111,50 @@ function updateCarouselTelephone() {
   });
 }
 
+// --- 12 PC configuration carousel functions ---
+function openCarouselModal12PC() {
+  currentSlide12PC = 0;
+  document.getElementById('carouselModal12PC').style.display = "flex";
+  initCarousel12PC();
+}
+
+function closeCarouselModal12PC() {
+  document.getElementById('carouselModal12PC').style.display = "none";
+}
+
+function initCarousel12PC() {
+  const dotsContainer = document.getElementById('carouselDots12PC');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlides12PC; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide12PC(i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarousel12PC();
+}
+
+function moveCarousel12PC(direction) {
+  currentSlide12PC += direction;
+  if(currentSlide12PC < 0) currentSlide12PC = totalSlides12PC - 1;
+  if(currentSlide12PC >= totalSlides12PC) currentSlide12PC = 0;
+  updateCarousel12PC();
+}
+
+function goToSlide12PC(index) {
+  currentSlide12PC = index;
+  updateCarousel12PC();
+}
+
+function updateCarousel12PC() {
+  const track = document.getElementById('carouselTrack12PC');
+  if(track) track.style.transform = `translateX(-${currentSlide12PC * 100}%)`;
+  document.querySelectorAll('#carouselModal12PC .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlide12PC);
+  });
+}
+
 // --- Batterie PC portable carousel functions ---
 function openCarouselModalBattery() {
   currentSlideBattery = 0;
@@ -1206,6 +1282,10 @@ document.getElementById('carouselModalMac')?.addEventListener('click', (e) => {
 
 document.getElementById('carouselModalTelephone')?.addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalTelephone') closeCarouselModalTelephone();
+});
+
+document.getElementById('carouselModal12PC')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModal12PC') closeCarouselModal12PC();
 });
 
 document.getElementById('carouselModalWipe')?.addEventListener('click', (e) => {
