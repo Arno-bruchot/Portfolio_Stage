@@ -288,6 +288,19 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn toggle-details" data-target="more-stage2-xerox">Voir plus</button>
         <button class="btn" onclick="openCarouselModalXerox()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
+
+      <div class="certif-card" data-competences="m1">
+        <h3>Migration physique du serveur & sécurisation Proxmox</h3>
+        <p>Migration physique du serveur principal de l’entreprise et sécurisation de l’infrastructure Proxmox lors de la deuxième année de stage.</p>
+        <div id="more-stage2-migration" class="more" style="display:none;">
+          <p>Réalisation de snapshots de toutes les VM critiques (NPM, gestionnaire de mots de passe, PBX, Tactical RMM) avant toute manipulation pour garantir un point de retour.</p>
+          <p>Extinction contrôlée des VM puis du serveur avant le déplacement physique vers la baie informatique, puis remise en service et vérification du redémarrage des services.</p>
+          <p>Contrôle de l’intégrité des snapshots après redémarrage et vérification du bon état de l’alimentation réseau et des connexions.</p>
+          <p>Compétences mobilisées : Gérer le patrimoine informatique.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-stage2-migration">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalMigration()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+      </div>
     </div>
   </section>
 
@@ -506,6 +519,29 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
       <button class="carousel-nav next" onclick="moveCarouselClinique(1)">❯</button>
     </div>
     <div class="carousel-dots" id="carouselDotsClinique"></div>
+  </div>
+</div>
+
+<!-- MODALE CARROUSEL MIGRATION SERVEUR -->
+<div id="carouselModalMigration" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalMigration()">✕</button>
+    <h3 style="margin-bottom:20px">Migration du serveur et sécurisation Proxmox</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselMigration(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackMigration">
+          <div class="carousel-slide"><img src="images/migration serveur/IMG_0717.jpeg" alt="Ancienne alimentation RJ45"><div class="carousel-caption">1/6 — Récupération de l’ancienne alimentation et du câble RJ45.</div></div>
+          <div class="carousel-slide"><img src="images/migration serveur/IMG_0720.jpeg" alt="Débranchement serveur"><div class="carousel-caption">2/6 — Débranchement du serveur non rangé.</div></div>
+          <div class="carousel-slide"><img src="images/migration serveur/IMG_0721.jpeg" alt="Câbles baie repositionnés"><div class="carousel-caption">3/6 — Positionnement des câbles derrière la baie.</div></div>
+          <div class="carousel-slide"><img src="images/migration serveur/IMG_0722.jpeg" alt="Installation serveur baie"><div class="carousel-caption">4/6 — Installation du serveur avec alimentation et RJ45 branchés.</div></div>
+          <div class="carousel-slide"><img src="images/migration serveur/IMG_0723.jpeg" alt="Déplacement serveur"><div class="carousel-caption">5/6 — Déplacement du serveur, mise en place dans la baie.</div></div>
+          <div class="carousel-slide"><img src="images/migration serveur/IMG_0724.jpeg" alt="Serveur nouvelle position"><div class="carousel-caption">6/6 — Serveur installé et câblage finalisé.</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselMigration(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsMigration"></div>
   </div>
 </div>
 
@@ -742,6 +778,8 @@ let currentSlideKiko = 0;
 const totalSlidesKiko = 4;
 let currentSlideClinique = 0;
 const totalSlidesClinique = 6;
+let currentSlideMigration = 0;
+const totalSlidesMigration = 6;
 let currentSlideScareware = 0;
 const totalSlidesScareware = 1;
 let currentSlideBatteries = 0;
@@ -980,6 +1018,50 @@ function updateCarouselClinique() {
   if(track) track.style.transform = `translateX(-${currentSlideClinique * 100}%)`;
   document.querySelectorAll('#carouselModalClinique .carousel-dot').forEach((dot, index) => {
     dot.classList.toggle('active', index === currentSlideClinique);
+  });
+}
+
+// --- Migration serveur carousel functions ---
+function openCarouselModalMigration() {
+  currentSlideMigration = 0;
+  document.getElementById('carouselModalMigration').style.display = "flex";
+  initCarouselMigration();
+}
+
+function closeCarouselModalMigration() {
+  document.getElementById('carouselModalMigration').style.display = "none";
+}
+
+function initCarouselMigration() {
+  const dotsContainer = document.getElementById('carouselDotsMigration');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesMigration; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      dot.addEventListener('click', () => goToSlideMigration(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselMigration();
+}
+
+function moveCarouselMigration(direction) {
+  currentSlideMigration += direction;
+  if(currentSlideMigration < 0) currentSlideMigration = totalSlidesMigration - 1;
+  if(currentSlideMigration >= totalSlidesMigration) currentSlideMigration = 0;
+  updateCarouselMigration();
+}
+
+function goToSlideMigration(index) {
+  currentSlideMigration = index;
+  updateCarouselMigration();
+}
+
+function updateCarouselMigration() {
+  const track = document.getElementById('carouselTrackMigration');
+  if(track) track.style.transform = `translateX(-${currentSlideMigration * 100}%)`;
+  document.querySelectorAll('#carouselModalMigration .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideMigration);
   });
 }
 
@@ -1438,6 +1520,14 @@ document.getElementById('carouselModalPaste').addEventListener('click', (e) => {
 
 document.getElementById('carouselModalKiko').addEventListener('click', (e) => {
   if(e.target.id === 'carouselModalKiko') closeCarouselModalKiko();
+});
+
+document.getElementById('carouselModalClinique')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalClinique') closeCarouselModalClinique();
+});
+
+document.getElementById('carouselModalMigration')?.addEventListener('click', (e) => {
+  if(e.target.id === 'carouselModalMigration') closeCarouselModalMigration();
 });
 
 document.getElementById('carouselModalScareware')?.addEventListener('click', (e) => {
