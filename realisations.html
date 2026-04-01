@@ -175,6 +175,23 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
         <button class="btn" onclick="openCarouselModalPaste()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
+      <div class="certif-card" data-competences="m1 m2 m5">
+        <h3>Intervention réseau - Clinique</h3>
+        <p>Diagnostic et remplacement d'un switch défaillant en baie, restauration d'une connectivité Ethernet totale.</p>
+        <div id="more-clinique" class="more" style="display:none;">
+          <p>Tests de continuité cable, passage par la baie bureau puis baie principale, signalement aux équipes sur place, remplacement par un HPE 1920s et reset usine après détection d'arrêt des TPE.</p>
+          <ul>
+            <li>Vérification signal jusqu'au switch</li>
+            <li>Redémarrage sans effet</li>
+            <li>Remplacement matériel et validation</li>
+            <li>Paramètres usine pour résoudre panne TPE</li>
+          </ul>
+          <p>Compétences : mettre à disposition un service, incident, gestion du patrimoine.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-clinique">Voir plus</button>
+        <button class="btn" onclick="openCarouselModalClinique()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
+      </div>
+
       <div class="certif-card" data-competences="m2">
         <h3>Intervention réseau - Kiko</h3>
         <p>Analyse et résolution des problèmes de connectivité pour une boutique Kiko (câblage, commutateur, Wi-Fi).</p>
@@ -456,6 +473,29 @@ footer{text-align:center;padding:20px;color:#fff;background:#3f3d56;margin-top:4
   </div>
 </div>
 
+<!-- MODALE CARROUSEL INTERVENTION CLINIQUE -->
+<div id="carouselModalClinique" class="carousel-modal">
+  <div class="carousel-modal-content">
+    <button class="carousel-modal-close" onclick="closeCarouselModalClinique()">✕</button>
+    <h3 style="margin-bottom:20px">Intervention réseau en clinique</h3>
+    <div class="carousel-container">
+      <button class="carousel-nav prev" onclick="moveCarouselClinique(-1)">❮</button>
+      <div class="carousel-wrapper">
+        <div class="carousel-track" id="carouselTrackClinique">
+          <div class="carousel-slide"><img src="images/clinique/IMG_0678.jpeg" alt="Test de connectivité"><div class="carousel-caption">1/6 — Test de connectivité dans la baie : signal présumé mais aucun trafic de sortie.</div></div>
+          <div class="carousel-slide"><img src="images/clinique/IMG_0679.jpeg" alt="Outil de test réseau"><div class="carousel-caption">2/6 — Outil de test RJ45 en place côté prise murale et switch.</div></div>
+          <div class="carousel-slide"><img src="images/clinique/IMG_0682.jpeg" alt="Switch défaillant"><div class="carousel-caption">3/6 — Switch en place sans signal retour vers les équipements.</div></div>
+          <div class="carousel-slide"><img src="images/clinique/IMG_0684.jpeg" alt="Nouveau switch HPE 1920s"><div class="carousel-caption">4/6 — Nouveau switch HPE 1920s prêt à être installé.</div></div>
+          <div class="carousel-slide"><img src="images/clinique/IMG_0688.jpeg" alt="Rebranchement câbles"><div class="carousel-caption">5/6 — Rebranchement des câbles RJ45 sur le switch HPE.</div></div>
+          <div class="carousel-slide"><img src="images/clinique/IMG_0689.jpeg" alt="Baie réseau finalisée"><div class="carousel-caption">6/6 — Baie réseau stable, switch opérationnel et TPE rétablis après reset usine.</div></div>
+        </div>
+      </div>
+      <button class="carousel-nav next" onclick="moveCarouselClinique(1)">❯</button>
+    </div>
+    <div class="carousel-dots" id="carouselDotsClinique"></div>
+  </div>
+</div>
+
 <!-- MODALE CARROUSEL SCAREWARE -->
 <div id="carouselModalScareware" class="carousel-modal">
   <div class="carousel-modal-content">
@@ -687,6 +727,8 @@ let currentSlidePaste = 0;
 const totalSlidesPaste = 2;
 let currentSlideKiko = 0;
 const totalSlidesKiko = 4;
+let currentSlideClinique = 0;
+const totalSlidesClinique = 6;
 let currentSlideScareware = 0;
 const totalSlidesScareware = 1;
 let currentSlideBatteries = 0;
@@ -881,6 +923,50 @@ function updateCarouselKiko() {
   
   document.querySelectorAll('#carouselModalKiko .carousel-dot').forEach((dot, index) => {
     dot.classList.toggle('active', index === currentSlideKiko);
+  });
+}
+
+// --- Clinique carousel functions ---
+function openCarouselModalClinique() {
+  currentSlideClinique = 0;
+  document.getElementById('carouselModalClinique').style.display = "flex";
+  initCarouselClinique();
+}
+
+function closeCarouselModalClinique() {
+  document.getElementById('carouselModalClinique').style.display = "none";
+}
+
+function initCarouselClinique() {
+  const dotsContainer = document.getElementById('carouselDotsClinique');
+  if(dotsContainer.children.length === 0) {
+    for(let i = 0; i < totalSlidesClinique; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('carousel-dot');
+      dot.addEventListener('click', () => goToSlideClinique(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+  updateCarouselClinique();
+}
+
+function moveCarouselClinique(direction) {
+  currentSlideClinique += direction;
+  if(currentSlideClinique < 0) currentSlideClinique = totalSlidesClinique - 1;
+  if(currentSlideClinique >= totalSlidesClinique) currentSlideClinique = 0;
+  updateCarouselClinique();
+}
+
+function goToSlideClinique(index) {
+  currentSlideClinique = index;
+  updateCarouselClinique();
+}
+
+function updateCarouselClinique() {
+  const track = document.getElementById('carouselTrackClinique');
+  if(track) track.style.transform = `translateX(-${currentSlideClinique * 100}%)`;
+  document.querySelectorAll('#carouselModalClinique .carousel-dot').forEach((dot, index) => {
+    dot.classList.toggle('active', index === currentSlideClinique);
   });
 }
 
