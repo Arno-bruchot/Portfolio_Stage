@@ -322,6 +322,21 @@ footer{text-align:center;padding:20px;color:#fff;background:#1e40af;margin-top:4
         <button class="btn" onclick="openCarouselModalXerox()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir les photos</button>
       </div>
 
+      <div class="certif-card" id="real-anthias" data-competences="m1 m2">
+        <h3>Mise en place d'un serveur d'affichage dynamique (Anthias)</h3>
+        <p>Déploiement d'une solution de digital signage open source pour les écrans d'accueil de l'entreprise, suite à une demande d'évolution du client.</p>
+        <div id="more-anthias" class="more" style="display:none;">
+          <p>Installation de Debian 12 sur une machine dédiée, puis déploiement d'Anthias (Screenly OSE) via Docker. Installation manuelle de Docker depuis les dépôts officiels pour garantir la compatibilité, résolution d'un conflit de dépôt APT dans /etc/apt/sources.list.d/ pendant le déploiement du script.</p>
+          <p>Configuration du mode Docker avec gestion réseau laissée à NetworkManager pour éviter les conflits. Connexion et configuration des écrans, tests de chargement des playlists et validation du service.</p>
+          <p>Mise en place d'une tâche cron pour l'extinction automatique à 17h30 les jours ouvrés et d'un réveil automatique via le BIOS à 8h30 — démarche Green IT pour limiter la consommation énergétique.</p>
+          <p>Formation de l'équipe pour la gestion autonome du contenu affiché.</p>
+          <p>Compétences mobilisées : Mettre à disposition un service informatique, Répondre aux incidents et aux demandes d'évolution.</p>
+        </div>
+        <button class="btn toggle-details" data-target="more-anthias">Voir plus</button>
+        <a href="images/Anthias/Documentation_technique_anthias.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;margin-left:8px;text-decoration:none">📄 Doc technique</a>
+        <a href="images/Anthias/Documentation_utilisateur_anthias.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;margin-left:8px;text-decoration:none">📄 Guide utilisateur</a>
+      </div>
+
       <div class="certif-card" id="real-migration" data-competences="m1">
         <h3>Migration physique du serveur & sécurisation Proxmox</h3>
         <p>Migration physique du serveur principal de l’entreprise et sécurisation de l’infrastructure Proxmox lors de la deuxième année de stage.</p>
