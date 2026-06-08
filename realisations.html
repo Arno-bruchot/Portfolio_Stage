@@ -136,7 +136,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#1e40af;margin-top:4
       <div class="featured-card" id="hackathon-featured">
         <h3>Hackathon Hack4SCAIRA — Renault · 2ème place</h3>
         <p>Concevoir un système de traçabilité industrielle pour le Renault Rafale en 24h, sous contraintes réelles : températures extrêmes, autonomie énergétique, déploiement à grande échelle.</p>
-        <a href="#hackathon-card" class="btn">Voir la réalisation Hackathon Hack4SCAIRA – Renault (2ᵉ place)</a>
+        <a href="#hackathon-card" class="btn" onclick="filterAndScrollHackathon(event)">Voir la réalisation Hackathon Hack4SCAIRA – Renault (2ᵉ place)</a>
       </div>
     </div>
   </section>
@@ -458,6 +458,7 @@ footer{text-align:center;padding:20px;color:#fff;background:#1e40af;margin-top:4
         <button class="btn toggle-details" data-target="more-15">Voir plus</button>
         <button class="btn" onclick="openCarouselModalHackathon()" style="margin-top:10px;padding:8px 15px;font-size:0.9rem">📸 Voir la photo</button>
         <a href="images/hackathon/hackathon_renault_doc.pdf" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;margin-left:8px;text-decoration:none">📄 Documentation Hackathon</a>
+        <a href="https://prezi.com/view/0xm8efLPJxVZ4aZjn3ka/" target="_blank" class="btn" style="display:inline-block;padding:6px 10px;font-size:0.9rem;margin-left:8px;text-decoration:none">📽️ Voir la présentation finale</a>
       </div>
     </div>
   </section>
@@ -838,6 +839,20 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
   });
 });
+
+function filterAndScrollHackathon(event) {
+  event.preventDefault();
+  const filterButton = document.querySelector('.filter-btn[data-filter="m4"]');
+  if (filterButton) {
+    filterButton.click();
+  }
+  const target = document.getElementById('hackathon-card');
+  if (target) {
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
+  }
+}
 
 // Gestion du carrousel
 let currentSlide = 0;
